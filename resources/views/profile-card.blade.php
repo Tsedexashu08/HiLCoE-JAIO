@@ -39,11 +39,11 @@
   }
 
   .image {
-      overflow: hidden;
-      width: 100%; /* Change to 100% for responsiveness */
-      max-width: 300px; /* Maintain a maximum width */
-      height: auto; /* Allow height to adjust */
-      aspect-ratio: 1; /* Maintain a square aspect ratio */
+      overflow:
+      width: 100%; 
+      max-width: 300px;
+      height: auto;
+      aspect-ratio: 1;
       background-color: #1468BF;
       border-radius: 50%;
       border: 5px solid #fefefe;
@@ -92,7 +92,7 @@
   }
 
   .image img {
-      object-fit: cover; /* Change to cover for better image fitting */
+      object-fit: cover;
       object-position: center;
       width: 100%;
       height: 100%;
@@ -146,24 +146,24 @@
   /* Responsive Styles */
   @media (max-width: 768px) {
       .card {
-          padding: 10px; /* Reduce padding on smaller screens */
+          padding: 10px; 
       }
 
       .card-info span {
-          font-size: 20px; /* Adjust font size */
+          font-size: 20px; 
       }
 
       .card-info p {
-          font-size: 14px; /* Adjust font size */
+          font-size: 14px; 
       }
 
       .custom-file-upload {
-          font-size: 14px; /* Adjust file upload button font size */
+          font-size: 14px; 
       }
 
       .image {
-          width: 80%; /* Make image smaller on mobile */
-          max-width: 200px; /* Maintain a max width */
+          width: 80%; 
+          max-width: 200px; 
       }
   }
 </style>
