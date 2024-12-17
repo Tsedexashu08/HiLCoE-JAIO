@@ -1,7 +1,7 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <style>
         *{
-            transition: all 0.5s ease;
+            transition: all 0.5ms ease;
         }
         .profilepic {
             border-radius: 50%;
@@ -60,6 +60,7 @@
         button.navlink {
             font-family: 'Times New Roman', serif;
             height: 100%;
+            width: 100%;
             width: fit-content;
             text-align: center;
         }
@@ -110,7 +111,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                         <img src="{{ asset('storage/'.Auth::user()->profile_picture) }}" alt="Profile Picture" style="padding : 12px; transition : 0.2ms ease in out;height : 150px;width : 200px;"/>
+                         <img src="{{ asset('storage/'.Auth::user()->profile_picture) }}" alt="Profile Picture" style="padding : 12px; ;transition : 0.2ms ease in out;height : 150px;width : 200px;"/>
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
@@ -187,7 +188,7 @@
 
     <!-- Mobile Navigation Links -->
     <div :class="{ 'block': open, 'hidden': !open }" class="sm:hidden">
-        <div class="flex flex-col items-center space-y-2 py-4 border-t border-gray-300">
+        <div class="flex flex-col items-center space-y-2 py-4 border-t border-gray-300 bg-cyan-300">
             <a href="{{ route('page1') }}" class="nav-link block" onclick="changeColor(this); return false;">
                 <button class='navlink'>Home</button>
             </a>
