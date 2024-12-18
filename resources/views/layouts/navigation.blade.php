@@ -109,7 +109,7 @@
                             </div>
                         </button>
                     </x-slot>
-
+8
                     <x-slot name="content">
                          <img src="{{ asset('storage/'.Auth::user()->profile_picture) }}" alt="Profile Picture" style="padding : 12px; ;transition : 0.2ms ease in out;height : 150px;width : 200px;"/>
                         <x-dropdown-link :href="route('profile.edit')">
