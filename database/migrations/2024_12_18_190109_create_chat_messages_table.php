@@ -11,7 +11,7 @@ class CreateChatMessagesTable extends Migration
         Schema::create('chat_messages', function (Blueprint $table) {
             $table->id('chat_message_id');
             $table->foreignId('chat_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('sender_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('sender_id')->references('id')->on('users')->onDelete('cascade');//still need to figure out the model setups(uk like adding methods with r/n shps n stuff for easier handling.)
             $table->text('content');
             $table->timestamps();
         });
