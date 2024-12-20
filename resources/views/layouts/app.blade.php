@@ -16,16 +16,16 @@
     <style>
         body {
             font-family: 'Times New Roman', serif;
-            width: 100vw;
+            width: 100dvw;
             height: auto;
         }
 
         main {
             height: auto;
+            width: 100dvw;
             display: flex;
             align-items: center;
             justify-content: center;
-
         }
 
         .container {

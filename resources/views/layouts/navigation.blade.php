@@ -177,9 +177,9 @@
 
     <!-- Desktop Navigation Links -->
     <div
-        class="hidden space-x-8 sm:-my-px  sm:flex items-center justify-center text-center h-16 border-t border-gray-300 w-full">
+        class="hidden space-x-8 sm:-my-px  sm:flex items-center justify-center text-center h-16 border border-gray-300 w-full">
         <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Home</button></a>
-        <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Faculty Interaction</button></a>
+        <a href="messages" class="nav-link block"><button class='navlink'>Faculty Interaction</button></a>
         <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Job Listings</button></a>
         <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Networking Events</button></a>
         <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Discussion Forums</button></a>
