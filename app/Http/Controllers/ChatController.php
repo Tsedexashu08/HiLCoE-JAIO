@@ -27,6 +27,20 @@ class ChatController extends Controller
     return view('components.chat-box', ['data' => $data,'users'=>$users]);
     }
 
+     
+
+    public function showChat($userId)
+    {
+        $user = User::find($userId);
+        $users = User::all(); // Fetch all users for the sidebar
+
+        return view('chat', compact('user', 'users'));
+    }
+
+
+
+    
+
 
     public function initiateChat(Request $request)
     {

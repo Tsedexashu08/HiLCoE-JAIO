@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class chat-box extends Component
+class chatbox extends Component
 {
     /**
      * Create a new component instance.
