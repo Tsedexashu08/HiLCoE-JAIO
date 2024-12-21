@@ -47,5 +47,59 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function messagesSent()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function messagesReceived()
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
+
+    public function chatsUser1()
+    {
+        return $this->hasMany(Chat::class, 'user_id_1');
+    }
+
+    public function chatsUser2()
+    {
+        return $this->hasMany(Chat::class, 'user_id_2');
+    }
+
+    public function chatMessages()
+    {
+        return $this->hasMany(ChatMessage::class, 'sender_id');
+    }
+
+    public function eventsRegistered()
+    {
+        return $this->hasMany(EventRegistration::class);
+    }
+
+    public function forumPosts()
+    {
+        return $this->hasMany(ForumPost::class);
+    }
+
+    public function postLikes()
+    {
+        return $this->hasMany(PostLike::class);
+    }
+
+    public function postComments()
+    {
+        return $this->hasMany(PostComment::class);
+    }
+
+    public function forumLikes()
+    {
+        return $this->hasMany(ForumLike::class);
+    }
+
+    public function forumFeedback()
+    {
+        return $this->hasMany(ForumFeedback::class);
+    }
     
 }

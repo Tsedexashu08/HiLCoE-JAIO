@@ -6,5 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class ForumFeedback extends Model
 {
-    //
+    protected $table = 'forum_feedback';
+    
+    public function post()
+    {
+        return $this->belongsTo(ForumPost::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

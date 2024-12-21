@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,9 +14,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('messages',function(){
-    return view('faculty-interaction');
-});
+
+//routes for our faculty interaction page.
+Route::get('messages',[ChatController::class,'OpenChats']);//this one passes all users to the side bar of the chat(uk so we populate it with options to chat like telegram).
+Route::get('chat/{id}', [ChatController::class, 'OpenChat'])->name('chat.open');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
