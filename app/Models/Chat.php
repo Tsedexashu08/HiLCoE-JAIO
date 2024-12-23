@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Chat extends Model
 {
-    protected $table = 'chats';
+    protected $table = 'chat';
+    protected $fillable = [
+       'user_id_1',
+       'user_id_2',
+
+    ];
     
     public function user1()
     {

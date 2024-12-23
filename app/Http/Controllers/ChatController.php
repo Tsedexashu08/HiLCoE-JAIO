@@ -6,41 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\Chat;
 use App\Models\ChatMessage;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
-    //for passing data of all users to see them in chat.
-    public function OpenChats()
+    public function OpenChats(Request $request)
     {
         $users = User::all();
+        $chatId = $request->session()->get('chat_id'); // Retrieve chat ID from session
 
-        return view('faculty-interaction', ['users' => $users]);
+        return view('faculty-interaction', ['users' => $users, 'chat_id' => $chatId]);
     }
-
-    //for passing data of all users to see them in chat.
-    public function OpenChat($id)
-    {
-        // Fetch the data based on the ID
-    $data = User::findOrFail($id); // Replace with your actual model
-    $users = User::all();
-
-    return view('components.chat-box', ['data' => $data,'users'=>$users]);
-    }
-
-     
-
-    public function showChat($userId)
-    {
-        $user = User::find($userId);
-        $users = User::all(); // Fetch all users for the sidebar
-
-        return view('chat', compact('user', 'users'));
-    }
-
-
-
-    
-
 
     public function initiateChat(Request $request)
     {
@@ -50,7 +26,7 @@ class ChatController extends Controller
             'user_id_2' => 'required|exists:users,id',
         ]);
 
-        // Check for an existing chat session(checking if the two users have chatted before).
+        // Check for an existing chat session (checking if the two users have chatted before).
         $chat = Chat::where(function ($query) use ($request) {
             $query->where('user_id_1', $request->user_id_1)->where('user_id_2', $request->user_id_2);
         })
@@ -59,44 +35,26 @@ class ChatController extends Controller
             })
             ->first();
 
-        // If the chat doesn't exist, create a new chat session(uk like if the two users havent chated before).
+        $existingChat = true;
+
+        // If the chat doesn't exist, create a new chat session.
         if (!$chat) {
             $chat = Chat::create([
                 'user_id_1' => $request->user_id_1,
                 'user_id_2' => $request->user_id_2,
             ]);
+            $existingChat = false;
         }
+        if ($chat) {
+            // Check if chat ID is valid
+            $request->session()->put('chat_id', $chat->id);
+        }
+        
+      
+        $request->session()->put('chat_id', $chat->id);
+        // Store chat ID in session
 
-        // Return the chat ID or chat details
-        return response()->json([
-            'status' => 'Chat session ready',
-            'chat_id' => $chat->id,
-        ]);
-    }
-
-    public function send(Request $request)
-    {
-        $request->validate([
-            'chat_id' => 'required|exists:chats,id',
-            'sender_id' => 'required|exists:users,id',
-            'content' => 'required|string|max:500',
-        ]);
-
-        // Find the chat by ID
-        $chat = Chat::findOrFail($request->chat_id);
-
-        // Create a new chat message
-        $chatMessage = new ChatMessage();
-        $chatMessage->chat_id = $chat->id;
-        $chatMessage->sender_id = $request->sender_id;
-        $chatMessage->content = $request->content;
-
-        // Save the message
-        $chatMessage->save();
-
-        return response()->json([
-            'status' => 'Message sent',
-            'message' => $chatMessage,
-        ]);
+        // Return the chat ID and existingChat status as JSON
+        return response()->json(['chat_id' => $chat->id, 'existing_chat' => $existingChat]);
     }
 }
