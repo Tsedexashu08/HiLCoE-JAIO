@@ -16,20 +16,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-
-// Routes for our faculty interaction page.
-// routes/web.php
-
 // Routes for our faculty interaction page.
 Route::get('messages', [ChatController::class, 'OpenChats'])->name('messages'); // Passes all users to the sidebar of the chat.
 Route::post('initiatechat', [ChatController::class, 'initiateChat'])->name('chat.start');
-
-
-// Route::post('sendMessage',[ChatController::class,'send'])->name('chat.send');
-
-
-Route::post('/open-chat', [ChatController::class, 'openChat'])->name('chat.open');
-
+Route::post('/send-message', [ChatController::class,'sendMessage'])->name('chat.sendMessage');
+Route::post('/load-messages', [ChatController::class,'LoadMessages'])->name('chat.loadMessages');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

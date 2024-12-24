@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Chat extends Model
 {
     protected $table = 'chat';
+    protected $primaryKey = 'chat_id';
     protected $fillable = [
        'user_id_1',
        'user_id_2',
@@ -25,6 +26,6 @@ class Chat extends Model
 
     public function messages()
     {
-        return $this->hasMany(ChatMessage::class);
+        return $this->hasMany(ChatMessage::class,'chat_id');
     }
 }

@@ -13,6 +13,7 @@
             </div>
             <h1>HiLCoE JAIO</h1>
             <!-- Settings Dropdown -->
+    
             <div class="hidden sm:flex sm:flex-col sm:items-center sm:ms-6 hover-border">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
@@ -31,7 +32,7 @@
                             </div>
                         </button>
                     </x-slot>
-                    8
+                    
                     <x-slot name="content">
                         <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture"
                             style="padding : 12px; ;transition : 0.2ms ease in out;height : 150px;width : 200px;" />
@@ -73,16 +74,16 @@
                 {{ __('HOME') }}
             </x-responsive-nav-link>
         </div>
-
+        
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
                 <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture"
-                    class="profilepic">
+                class="profilepic">
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
-
+            
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
@@ -90,7 +91,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <x-responsive-nav-link :href="route('logout')"
-                        onclick="event.preventDefault();
+                    onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
@@ -98,17 +99,17 @@
             </div>
         </div>
     </div>
-
+    
     <!-- Desktop Navigation Links -->
     <div
-        class="hidden space-x-8 sm:-my-px  sm:flex items-center justify-center text-center h-16 border border-gray-300 w-full">
-        <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Home</button></a>
-        <a href="messages" class="nav-link block"><button class='navlink'>Faculty Interaction</button></a>
-        <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Job Listings</button></a>
-        <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Networking Events</button></a>
-        <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Discussion Forums</button></a>
-        <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Resources</button></a>
-    </div>
+    class="hidden space-x-8 sm:-my-px  sm:flex items-center justify-center text-center h-16 border border-gray-300 w-full">
+    <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Home</button></a>
+    <a href="messages" class="nav-link block"><button class='navlink'>Faculty Interaction</button></a>
+    <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Job Listings</button></a>
+    <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Networking Events</button></a>
+    <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Discussion Forums</button></a>
+    <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Resources</button></a>
+</div>
 
     <!-- Mobile Navigation Links -->
     <div :class="{ 'block': open, 'hidden': !open }" class="sm:hidden">

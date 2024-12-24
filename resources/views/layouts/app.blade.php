@@ -132,6 +132,7 @@
             {{ $slot }}
         </main>
         <footer>
+            <x-message-notifications/>
             <div class="footer">
                 <span class="contact-info">
                     <h2>Contact Us</h2>
