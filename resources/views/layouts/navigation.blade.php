@@ -15,7 +15,7 @@
             <!-- Settings Dropdown -->
     
             <div class="hidden sm:flex sm:flex-col sm:items-center sm:ms-6 hover-border">
-                <x-dropdown align="right" width="48">
+                <x-dropdown align="right" width="50%">
                     <x-slot name="trigger">
                         <button
                             class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -34,19 +34,21 @@
                     </x-slot>
                     
                     <x-slot name="content">
-                        <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture"
-                            style="padding : 12px; ;transition : 0.2ms ease in out;height : 150px;width : 200px;" />
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <x-dropdown-link :href="route('logout')"
-                                onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                        <div class="relative">
+                            <div class="arrow"></div>
+                            <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture"
+                                style="padding: 12px; transition: 0.2s ease-in-out; height: 120px; width: 200px;" />
+                            <x-dropdown-link :href="route('profile.edit')">
+                                {{ __('Profile') }}
                             </x-dropdown-link>
-                        </form>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault(); this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        </div>
                     </x-slot>
                 </x-dropdown>
             </div>
@@ -101,15 +103,14 @@
     </div>
     
     <!-- Desktop Navigation Links -->
-    <div
-    class="hidden space-x-8 sm:-my-px  sm:flex items-center justify-center text-center h-16 border border-gray-300 w-full">
-    <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Home</button></a>
-    <a href="messages" class="nav-link block"><button class='navlink'>Faculty Interaction</button></a>
-    <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Job Listings</button></a>
-    <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Networking Events</button></a>
-    <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Discussion Forums</button></a>
-    <a href="{{ route('page1') }}" class="nav-link block"><button class='navlink'>Resources</button></a>
-</div>
+    <nav class="bg-white border-b border-gray-100 h-16 flex items-center justify-center border-2 gap-2 ">
+        <x-nav-link href="{{ route('page1') }}" active="{{ request()->routeIs('page1') }}">Home</x-nav-link>
+        <x-nav-link href="messages" active="{{ request()->routeIs('messages') }}">Faculty Interaction</x-nav-link>
+        <x-nav-link href="{{ route('page1') }}" active="{{ request()->routeIs('job-listings') }}">Job Listings</x-nav-link>
+        <x-nav-link href="{{ route('page1') }}" active="{{ request()->routeIs('networking-events') }}">Networking Events</x-nav-link>
+        <x-nav-link href="{{ route('page1') }}" active="{{ request()->routeIs('discussion-forums') }}">Discussion Forums</x-nav-link>
+        <x-nav-link href="{{ route('page1') }}" active="{{ request()->routeIs('resources') }}">Resources</x-nav-link>
+    </nav>
 
     <!-- Mobile Navigation Links -->
     <div :class="{ 'block': open, 'hidden': !open }" class="sm:hidden">

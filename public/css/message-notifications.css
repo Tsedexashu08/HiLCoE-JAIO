@@ -20,9 +20,9 @@
     border: #ffffff 4px solid;
     background-color: #2b63d4;
     border-radius: 50%;
-    height: 100px; 
-    width: 100px; 
-    margin-right: 10px; 
+    height: 80px; 
+    width: 80px; 
+    margin-right: 25px; 
 }
 
 .chat-wrapper .circle {

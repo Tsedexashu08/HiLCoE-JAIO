@@ -9,10 +9,9 @@ nav h1 {
 
 .profilepic {
     border-radius: 50%;
-    background-color: #00f;
-    width: 40px;
-    height: 40px;
-    border: 2px double #000;
+    width: 45px;
+    height: 45px;
+    border: 1px solid lightblue;
     margin-right: 10px;
 }
 
@@ -56,7 +55,7 @@ h1 {
 }
 
 .hover-border:hover {
-    border: 1px solid grey;
+  
     border-radius: 5px;
     background-color: rgba(245, 245, 245, 0.91);
 }
@@ -72,6 +71,42 @@ button.navlink {
     color: #000;
     font-size: 18px;
 }
+.relative {
+    position: relative;
+}
+
+/* Arrow Styles */
+.arrow {
+    position: absolute;
+    top: -12px; 
+    left: 50%; /* Center the arrow */
+    transform: translateX(-50%); /* Center the arrow horizontally */
+    width: 15px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid white; /* Match the dropdown background color */
+}
+
+/* Dropdown Content Styles */
+.dropdown-content {
+    background: white;
+    border-radius: 0.375rem; 
+    box-shadow: 0 14px 6px rgba(0, 0, 0.5, 0.1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Show Dropdown with Animation */
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Initially Hidden */
+.dropdown-content {
+    opacity: 0; 
+    transform: translateY(-10px); /* Starts slightly above */
+    display: block; /* Allow for hover effects */
+}
 
 @media (max-width: 640px) {
     .profilepic {
@@ -79,8 +114,4 @@ button.navlink {
         height: 150px;
         width: 150px;
     }
-
-    /* h1 {
-        font-size: 24px
-    } */
 }

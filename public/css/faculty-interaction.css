@@ -26,10 +26,17 @@
     height: 85dvh;
 }
 .chat-sidebar {
-    width: 30%;
+    width: 35%;
     background-color: #fff;
     border-right: 1px solid #ddd;
+    transition: transform 0.3s ease;
+    height: 100%;
 }
+.chat-sidebar:hover{
+    transform: translateX(10px);
+
+}
+
 #chat-user-name {
     background: linear-gradient(135deg, #fff, #f5f5f5);
 }
@@ -65,6 +72,7 @@
 .chat-preview {
     display: flex;
     gap: 4%;
+    height: max-content;
     align-items: center;
     background: linear-gradient(135deg, #dcdcdc, #fff, #dcdcdc);
     transition: background-color 0.3s, box-shadow 0.3s;
@@ -72,16 +80,17 @@
 }
 .incoming-message,
 .outgoing-message {
-    max-width: 50%;
+   width: 40%;
     box-shadow: 0 6px 10px rgba(255, 255, 255, 0.5),
         0 4px 10px rgba(0, 0, 0, 0.3);
 }
 .chat-preview img {
-    border: 2px solid #005a9c;
+    border: 2px double #00879c;
     border-radius: 50%;
-    width: 80px;
-    height: 75px;
+    width: 85px;
+    height: 80px;
 }
+
 #propic {
     object-fit: fill;
     object-position: center;
@@ -89,7 +98,7 @@
 .chat-preview:hover {
     background: linear-gradient(135deg, silver, #dcdcdc, silver);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-    border: 0.5px solid #fff;
+    border: 2px solid #fff;
     border-radius: 5px;
 }
 .chat-preview:active {
@@ -107,6 +116,7 @@
     font-size: 0.9rem;
     margin: 0;
 }
+
 #chat-box {
     flex: 1;
     display: flex;
@@ -114,6 +124,9 @@
     position: relative;
     height: auto;
     width: 100%;
+}
+.chat-box{
+    width: 70dvw;
 }
 .chat-box h2 {
     border-bottom: 1px solid #005a9c;
