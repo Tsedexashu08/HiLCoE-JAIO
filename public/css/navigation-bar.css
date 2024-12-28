@@ -84,7 +84,7 @@ button.navlink {
     width: 15px;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-bottom: 10px solid white; /* Match the dropdown background color */
+    box-shadow: 0 14px 6px rgba(0, 0, 0.5, 0.1);
 }
 
 /* Dropdown Content Styles */

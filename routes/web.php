@@ -22,6 +22,11 @@ Route::post('initiatechat', [ChatController::class, 'initiateChat'])->name('chat
 Route::post('/send-message', [ChatController::class,'sendMessage'])->name('chat.sendMessage');
 Route::post('/load-messages', [ChatController::class,'LoadMessages'])->name('chat.loadMessages');
 
+
+Route::get('discussion', function () {
+    return view('Discussion-Forum-page');
+})->name('discussion');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

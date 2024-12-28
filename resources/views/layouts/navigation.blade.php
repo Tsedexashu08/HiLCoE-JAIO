@@ -106,10 +106,10 @@
     <nav class="bg-white border-b border-gray-100 h-16 flex items-center justify-center border-2 gap-2 ">
         <x-nav-link href="{{ route('page1') }}" active="{{ request()->routeIs('page1') }}">Home</x-nav-link>
         <x-nav-link href="messages" active="{{ request()->routeIs('messages') }}">Faculty Interaction</x-nav-link>
-        <x-nav-link href="{{ route('page1') }}" active="{{ request()->routeIs('job-listings') }}">Job Listings</x-nav-link>
-        <x-nav-link href="{{ route('page1') }}" active="{{ request()->routeIs('networking-events') }}">Networking Events</x-nav-link>
-        <x-nav-link href="{{ route('page1') }}" active="{{ request()->routeIs('discussion-forums') }}">Discussion Forums</x-nav-link>
-        <x-nav-link href="{{ route('page1') }}" active="{{ request()->routeIs('resources') }}">Resources</x-nav-link>
+        <x-nav-link href="'{{ route('page1') }}'" active="{{ request()->routeIs('page1') }}">Job Listings</x-nav-link>
+        <x-nav-link href="{{ route('page1') }}" active="{{ request()->routeIs('page1') }}">Networking Events</x-nav-link>
+        <x-nav-link href="{{ route('discussion') }}" active="{{ request()->routeIs('page1') }}">Discussion Forums</x-nav-link>
+        <x-nav-link href="{{ route('page1') }}" active="{{ request()->routeIs('page1') }}">Resources</x-nav-link>
     </nav>
 
     <!-- Mobile Navigation Links -->

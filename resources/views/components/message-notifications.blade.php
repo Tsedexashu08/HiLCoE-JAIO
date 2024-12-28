@@ -2,7 +2,9 @@
 <div class="chat-wrapper">
     <div class="chat">
         <div class="background">
-            <img src="{{ asset('images/notifications.png') }}" alt="" srcset="">
+            <a href="{{ route('messages') }}">
+                <img src="{{ asset('images/notifications.png') }}" alt="" srcset="">
+            </a>
         </div>
     </div>
 </div>

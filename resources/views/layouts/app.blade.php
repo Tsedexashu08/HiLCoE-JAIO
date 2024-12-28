@@ -128,7 +128,7 @@
         @endisset
 
         <!-- Page Content -->
-        <main>
+        <main class="h-100">
             {{ $slot }}
         </main>
         <footer>
