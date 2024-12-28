@@ -13,7 +13,7 @@
             </div>
             <h1>HiLCoE JAIO</h1>
             <!-- Settings Dropdown -->
-    
+              
             <div class="hidden sm:flex sm:flex-col sm:items-center sm:ms-6 hover-border">
                 <x-dropdown align="right" width="50%">
                     <x-slot name="trigger">
@@ -108,7 +108,7 @@
         <x-nav-link href="messages" active="{{ request()->routeIs('messages') }}">Faculty Interaction</x-nav-link>
         <x-nav-link href="'{{ route('page1') }}'" active="{{ request()->routeIs('page1') }}">Job Listings</x-nav-link>
         <x-nav-link href="{{ route('page1') }}" active="{{ request()->routeIs('page1') }}">Networking Events</x-nav-link>
-        <x-nav-link href="{{ route('discussion') }}" active="{{ request()->routeIs('page1') }}">Discussion Forums</x-nav-link>
+        <x-nav-link href="{{ route('discussion') }}" active="{{ request()->routeIs('discussion') }}">Discussion Forums</x-nav-link>
         <x-nav-link href="{{ route('page1') }}" active="{{ request()->routeIs('page1') }}">Resources</x-nav-link>
     </nav>
 

@@ -1,0 +1,38 @@
+
+  .like-container input:checked ~ svg {
+    fill: #2196F3;
+  }
+  .like-container {
+    display: flex;
+    align-items: center;
+    gap: 2%;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+
+  .like-container  svg {
+    height: 30px;
+    width: 30px;
+  }
+  .comment-counter{
+    margin-left: 10px;
+    font-size: 16px;
+    color: #333;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+  .like-counter {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #333;
+  }
+  .like-container svg:hover {
+    transform: scale(1.2) rotate(-5deg);
+  }
+  .like-container input {
+    display: none;
+  }

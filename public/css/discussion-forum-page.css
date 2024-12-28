@@ -1,45 +1,168 @@
-/* From Uiverse.io by adamgiebl */
+.forum-card,
+.forum-page {
+    box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px, rgba(0, 0, 0, 0.3) 0 7px 13px -3px,
+        rgba(0, 0, 0, 0.2) 0 -3px 0 inset;
+}
+#forum-image,
+#user-image {
+    background-size: cover;
+    background-color: white;
+}
+#forum-header,
+.forum-content,
+.forum-page {
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+}
+.forum-content {
+    flex-direction: column;
+}
 .forum-card {
-    width: 700px;
-    background: white;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
-        rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
-        rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    width: 80%;
+    background-color: white;
+}
+#intro{
+   color: black;
+    text-shadow: white 5px 2px 14px;
+}
+.forum-page {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 90%;
 }
 .forum-container {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     margin-top: 10px;
     height: 100vh;
     text-align: flex-start;
+    width: 100%;
 }
 #user-image {
     border-radius: 50%;
-    border: 2px solid black;
+    border: 2px solid #000;
     background-image: url("https://www.w3schools.com/howto/img_avatar.png");
-    background-size: cover;
     height: 100px;
     width: 100px;
-    background-color: aliceblue;
 }
 #forum-header {
-    display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 10px;
-    padding: 10px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #000;
 }
 #forum-image {
-    border: 2px solid black;
-    background-size: cover;
+    border: 2px solid #000;
     width: 100%;
-    background-color: aliceblue;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
 }
+.forum-header {
+    border: white 1px solid;
+    text-shadow: white 5px 2px 5px;
+    width: 100%;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+.forum-header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000;
+    margin: 0;
+}
+.forum-header p {
+    font-size: 1rem;
+    color: #666;
+    margin: 5px 0 0;
+}
+
 .forum-content {
-    padding: 10px;
+    flex-direction: column;
+}
+.forum-header {
+    font-size: 1.5rem;
+    font-weight: bold;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    text-align: center;
+}
+
+.forum-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    height: 100%;
+}
+
+.forum-search input[type="text"] {
+    width: 400px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 5px 0 0 5px;
+    /* outline: none; */
+}
+
+.forum-search button {
+    padding: 10px;
+    border: 1px solid #000;
+    border-left: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.forum-search button:hover {
+    background-color: #0056b3;
+}
+
+.forum-search button svg {
+    width: 25px;
+    height: auto;
+}
+
+.add-post {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin-top: 20px;
+    height: 100%;
+    width: 85%;
+    gap: 2%;
+    padding: 2%;
+    box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px, rgba(0, 0, 0, 0.3) 0 7px 13px -3px,
+        rgba(0, 0, 0, 0.2) 0 -3px 0 inset;
+    border-radius: 3px;
+}
+.add-post button {
+    padding: 10px;
+    width: 25%;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    justify-content: center;
+    height: 100%;
+}
+.add-post button:hover {
+    background-color: #0056b3;
+}
+.add-post img {
+    width: 150px;
+    height: auto;
+    margin-right: 5px;
 }
