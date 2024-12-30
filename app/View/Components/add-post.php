@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class commentbutton extends Component
+class addpost extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class commentbutton extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.comment-button');
+        return view('components.add-post');
     }
 }

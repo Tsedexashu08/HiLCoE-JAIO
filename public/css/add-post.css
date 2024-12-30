@@ -1,0 +1,46 @@
+.popup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    /* width: 50%; */
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px, rgba(0, 0, 0, 0.3) 0 7px 13px -3px,
+        rgba(0, 0, 0, 0.2) 0 -3px 0 inset;
+    position: relative;
+    gap: 10px;
+    display: none;
+}
+
+.popup-form h2 {
+    margin: 10px 0;
+}
+
+.popup-content {
+    display: flex;
+
+    gap: 10px;
+}
+
+.popup-form input,
+.popup-form textarea {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+}
+
+.popup-form button {
+    padding: 10px;
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.popup-form button:hover {
+    background-color: #0056b3;
+}

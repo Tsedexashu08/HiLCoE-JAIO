@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class ForumLike extends Model
 {
     protected $table = 'forum_likes';
+    protected $fillable =[
+        'post_id',
+        'user_id',
+    ];
+
     
     public function post()
     {

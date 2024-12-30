@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class ForumFeedback extends Model
 {
     protected $table = 'forum_feedback';
-    
+    protected $fillable = [
+        'post_id',
+        'user_id',
+        'content',
+    ];
     public function post()
     {
         return $this->belongsTo(ForumPost::class);

@@ -28,6 +28,7 @@
                 <button>add post</button>
             </div>
         </div>
+       @include('components.add-post')
         <div class="forum-container">
             <div class="forum-card">
                 <section id="forum-header">
@@ -39,7 +40,6 @@
                         <span>user-role- posted at : wednesday minamn...</span>
                     </span>
                 </section>
-               
                 <section class="forum-content">
                     <h2>Discussion Forum</h2>
                     <p>Ask questions, share your knowledge and experience, and learn from others. Lorem ipsum dolor sit
@@ -54,8 +54,15 @@
                     <x-like-button />
                 </span>
             </div>
-            
+
         </div>
         <x-comment-section />
     </div>
+    <script>
+    
+    document.querySelector('.add-post button').addEventListener('click', function() {
+        const addpost=document.getElementById('popup-form');
+        addpost.style.display='block';
+    });
+    </script>
 @endsection

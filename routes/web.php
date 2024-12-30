@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DiscussionForumController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -21,6 +22,9 @@ Route::get('messages', [ChatController::class, 'OpenChats'])->name('messages'); 
 Route::post('initiatechat', [ChatController::class, 'initiateChat'])->name('chat.start');
 Route::post('/send-message', [ChatController::class,'sendMessage'])->name('chat.sendMessage');
 Route::post('/load-messages', [ChatController::class,'LoadMessages'])->name('chat.loadMessages');
+
+//routes for discussion forum page
+Route::post('add-post', [DiscussionForumController::class, 'addPost'])->name('discussion.addPost');
 
 
 Route::get('discussion', function () {
