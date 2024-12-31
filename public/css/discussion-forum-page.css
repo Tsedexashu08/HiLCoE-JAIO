@@ -1,14 +1,15 @@
 .forum-card,
-.forum-page {
-    box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px, rgba(0, 0, 0, 0.3) 0 7px 13px -3px,
-        rgba(0, 0, 0, 0.2) 0 -3px 0 inset;
+.forum-page,
+.forum-header {
+    box-shadow: rgba(0, 0, 0.6, 0.4) 0 2px 4px, rgba(0, 0, 0, 0.3) 0 7px 13px -6px,
+        rgba(0, 0, 0.6, 0.2) 0 -3px 0 inset;
 }
 #forum-image,
 #user-image {
     background-size: cover;
     background-color: white;
 }
-.post{
+.post {
     display: none;
 }
 #forum-header,
@@ -25,8 +26,8 @@
     width: 80%;
     background-color: white;
 }
-#intro{
-   color: black;
+#intro {
+    color: black;
     text-shadow: white 5px 2px 14px;
 }
 .forum-page {
@@ -66,19 +67,20 @@
     border-radius: 10px;
 }
 .forum-header {
-    border: white 1px solid;
-    text-shadow: white 5px 2px 5px;
+    border: transparent 4px double;
+    border-radius: 15px;
+    text-shadow: black 5px 2px 5px;
     width: 100%;
-    padding: 20px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
-    border-radius: 10px;
+    padding: 10px;
     margin-bottom: 20px;
     align-items: center;
+    overflow: hidden;
 }
+
 .forum-header h1 {
     font-size: 2rem;
     font-weight: bold;
-    color: #000;
+    color: #fff;
     margin: 0;
 }
 .forum-header p {
@@ -109,14 +111,14 @@
 .forum-search input[type="text"] {
     width: 400px;
     padding: 10px;
-    border: 1px solid #000;
+    border: 1px double #f1f1f1;
     border-radius: 5px 0 0 5px;
-    /* outline: none; */
+    outline: none;
 }
 
 .forum-search button {
     padding: 10px;
-    border: 1px solid #000;
+    border: 1px solid #f1f1f1;
     border-left: none;
     background-color: #007bff;
     color: white;
@@ -150,6 +152,8 @@
     box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px, rgba(0, 0, 0, 0.3) 0 7px 13px -3px,
         rgba(0, 0, 0, 0.2) 0 -3px 0 inset;
     border-radius: 3px;
+    border: none;
+    text-shadow: none;
 }
 .add-post button {
     padding: 10px;
@@ -168,4 +172,15 @@
     width: 150px;
     height: auto;
     margin-right: 5px;
+}
+@keyframes popupDisappear {
+    from {
+        display: none;
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
 }

@@ -13,6 +13,7 @@
     position: relative;
     gap: 10px;
     display: none;
+    animation: popupAppear 0.4s ease-in-out forwards;
 }
 
 .popup-form h2 {
@@ -43,4 +44,34 @@
 
 .popup-form button:hover {
     background-color: #0056b3;
+    color: white;
 }
+.popup-form span {
+    display: flex;
+    justify-content: center;
+}
+ #close-button {
+    border: none;
+    background-color: white;
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+    width: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+    @keyframes popupAppear {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+ 
+
+   

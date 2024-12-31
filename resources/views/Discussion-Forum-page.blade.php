@@ -2,7 +2,7 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/discussion-forum-page.css') }}">
     <div class="forum-page">
-        <div class="forum-header" style="background-image: url('{{ asset('images/forum-bg.png') }}');">
+        <div class="forum-header">
             <h1>Welcome to HiLCoE's Discussion Forum</h1>
             <p id="intro">Ask questions, share your knowledge and experience, and learn from others.</p>
             <div class="forum-search">
@@ -28,7 +28,7 @@
                 <button>add post</button>
             </div>
         </div>
-       @include('components.add-post')
+        @include('components.add-post')
         <div class="forum-container">
             <div class="forum-card">
                 <section id="forum-header">
@@ -58,11 +58,17 @@
         </div>
         <x-comment-section />
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"></script>
+    <script src="{{ asset('js/forumpage.js') }}"></script>
     <script>
-    
-    document.querySelector('.add-post button').addEventListener('click', function() {
-        const addpost=document.getElementById('popup-form');
-        addpost.style.display='block';
-    });
+        document.querySelector('.add-post button').addEventListener('click', function() {
+            const addpost = document.getElementById('popup-form');
+            addpost.style.display = 'block';
+        });
+        document.querySelector('#close-button').addEventListener('click', function() {
+            const addpost = document.getElementById('popup-form');
+            addpost.style.display = 'none';
+        });
     </script>
 @endsection
