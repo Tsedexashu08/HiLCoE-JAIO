@@ -1,5 +1,6 @@
 @extends('dashboard')
 @section('content')
+    <link rel="stylesheet" href="{{ asset('css/job-listing-page.css') }}">
     <div class="job-listing-page">
         <div class="search-panel">
             <h1>search for oppurtunities</h1>
@@ -19,8 +20,8 @@
         </div>
         <div class="search-list">
             <div class="job-card">
-                <span>
-                    <img src="" alt="" id="company-logo">
+                <span class="logo">
+                    <img src="{{asset('images/logo.jpg')}}" alt="" id="company-logo">
                 </span>
                 <section id="job-header">
                     <span>
@@ -39,110 +40,5 @@
             </div>
         </div>
     </div>
-    </div>
-
-    <style>
-        .job-listing-page {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            box-shadow: rgba(0, 0, 0.6, 0.4) 0 2px 4px, rgba(0, 0, 0, 0.3) 0 7px 13px -6px,
-                rgba(0, 0, 0.6, 0.2) 0 -3px 0 inset;
-            width: 90dvw;
-            height: 100dvh;
-        }
-
-        .search-panel {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            border-bottom: #ccc 1px solid;
-            width: 100%;
-            background-color: #f9f9f9;
-        }
-
-        .search-panel h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            font-family: 'Times New Roman', Times, serif;
-        }
-
-        .search-panel label {
-            font-size: 1.2em;
-            margin-top: 10px;
-            font-family: 'Times New Roman', Times, serif;
-            color: #ccc
-        }
-
-        .search-list {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-            height: 100%;
-            width: 100%;
-        }
-
-        .search-bar {
-            display: flex;
-            align-items: center;
-            border: 1px solid #ccc;
-            border-radius: 35px;
-            padding: 5px 5px;
-            width: 600px;
-        }
-
-        .search-bar input {
-            border: none;
-            outline: none;
-            flex: 1;
-            padding: 10px;
-            border-radius: 5px;
-            border-top-left-radius: 25px;
-            border-bottom-left-radius: 25px;
-        }
-
-        .search-bar button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-        }
-
-        .search-bar svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        .job-card {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 5%;
-            text-align: center;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            width: 100%;
-            height: 300px;
-            margin: 4%;
-            box-shadow: rgba(0, 0, 0.6, 0.4) 0 2px 4px, rgba(0, 0, 0, 0.3) 0 7px 13px -6px,
-                rgba(0, 0, 0.6, 0.2) 0 -3px 0 inset;
-                padding-left: 5%;
-        }
-        .job-card span img {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            margin: 10px;
-            background-color: #777777;
-          
-        }
-    </style>
+ </div>
 @endsection
