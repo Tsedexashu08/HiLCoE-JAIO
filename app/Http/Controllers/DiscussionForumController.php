@@ -39,4 +39,11 @@ class DiscussionForumController extends Controller
 
         return response()->json(['message' => 'Topic created successfully']);
     }
+    public function getPosts(Request $request)
+    {
+        $topic = DiscussionForum::where('topic', $request->topic)->first();
+        $forumid=$topic->forum_id;
+        $posts = ForumPost::where('forum_id', $forumid)->get();
+        return response()->json(['posts' => $posts]);
+    }
 }

@@ -12,6 +12,7 @@
 .post {
     display: none;
 }
+
 #forum-header,
 .forum-content,
 .forum-page {
@@ -76,6 +77,10 @@
     align-items: center;
     overflow: hidden;
 }
+/* #likes-comments-container{
+  display: flex;
+  border: #000 1px solid;
+} */
 
 .forum-header h1 {
     font-size: 2rem;

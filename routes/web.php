@@ -26,6 +26,11 @@ Route::post('/load-messages', [ChatController::class,'LoadMessages'])->name('cha
 //routes for discussion forum page
 Route::post('add-post', [DiscussionForumController::class, 'addPost'])->name('discussion.addPost');
 
+//joblistingpage routes
+Route::get('joblisting', function () {
+    return view('Job-Listing-Page');
+})->name('joblisting');
+
 
 Route::get('discussion', function () {
     return view('Discussion-Forum-page');

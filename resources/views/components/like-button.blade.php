@@ -6,9 +6,6 @@
       <div class="like-counter">
         <span id="like-count">0</span> Likes
       </div>
-      <div class="comment-counter">
-        <x-comment-button /><span id="comment-counter">0</span>
-      </div>
     </label>
 
 
@@ -22,4 +19,12 @@
       likeCount.textContent = count - 1;
     }
   });
+  document.querySelector('.comment-btn').addEventListener('click', function() {
+            const commentSection = document.querySelector('.comment-section');
+            if (commentSection.style.display === 'none') {
+                commentSection.style.display = 'grid';
+            } else {
+                commentSection.style.display = 'none';
+            }
+        });
 </script>

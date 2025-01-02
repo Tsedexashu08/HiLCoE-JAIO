@@ -1,4 +1,4 @@
-<div>
+<div class="commment-btn">
     <div class="group relative">
         <button>
             <svg stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
@@ -16,3 +16,13 @@
             <span> </span></span>
     </div>
 </div>
+<script>
+    document.querySelector('.comment-btn').addEventListener('click', function() {
+        const commentSection = document.querySelector('.comment-section');
+        if (commentSection.style.display === 'none') {
+            commentSection.style.display = 'grid';
+        } else {
+            commentSection.style.display = 'none';
+        }
+    });
+</script>

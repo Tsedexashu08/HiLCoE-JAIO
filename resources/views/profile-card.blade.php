@@ -182,7 +182,6 @@
         <button type="submit" class="submit-button">Submit</button>
     </form>
 </div>
-
 <script>
     function submitFormOnFileSelect() {
         var fileInput = document.getElementById('file');
