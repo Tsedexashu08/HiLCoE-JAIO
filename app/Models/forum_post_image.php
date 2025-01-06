@@ -14,4 +14,11 @@ class forum_post_image extends Model
     {
         return $this->belongsTo(ForumPost::class, 'post_id', 'post_id');
     }
+    public static function addImage($postId, $imagePath)
+    {
+        return self::create([
+            'post_id' => $postId,
+            'image' => $imagePath,
+        ]);
+    }
 }

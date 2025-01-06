@@ -1,5 +1,5 @@
-VANTA.CLOUDS({
-    el: ".search-panel",
+VANTA.WAVES({
+    el: ".home-section",
     mouseControls: true,
     touchControls: true,
     gyroControls: false,

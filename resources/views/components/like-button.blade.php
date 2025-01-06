@@ -7,7 +7,7 @@
         <span id="like-count">0</span> Likes
       </div>
     </label>
-
+</div>
 
 <script>
   document.querySelector('.like-container input').addEventListener('change', function() {
@@ -19,12 +19,4 @@
       likeCount.textContent = count - 1;
     }
   });
-  document.querySelector('.comment-btn').addEventListener('click', function() {
-            const commentSection = document.querySelector('.comment-section');
-            if (commentSection.style.display === 'none') {
-                commentSection.style.display = 'grid';
-            } else {
-                commentSection.style.display = 'none';
-            }
-        });
 </script>

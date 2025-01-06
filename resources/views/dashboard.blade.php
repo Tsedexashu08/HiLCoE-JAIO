@@ -3,3 +3,5 @@
         @yield('content')
     </main>
 </x-app-layout>
+
+

@@ -11,9 +11,15 @@ class DiscussionForum extends Model
     protected $fillable = [
         'topic',
     ];
+
     public function posts()
     {
-        return $this->hasMany(ForumPost::class,'forum_id');
+        return $this->hasMany(ForumPost::class, 'forum_id');
     }
-}
+
+    public function postsWithImages()
+    {
+        return $this->posts()->with('forum_images','user');
+    }
     
+}
