@@ -130,6 +130,7 @@
         <main class="h-100">
             {{ $slot }}
         </main>
+
         <footer>
             <x-message-notifications />
             <div class="footer">
