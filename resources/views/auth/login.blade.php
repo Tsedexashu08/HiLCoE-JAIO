@@ -77,8 +77,9 @@
         }
     </style>
     <!-- Session Status -->
-    <x-auth-session-status class="session-status" :status="session('status')" />
     <h1>HiLCoE JAIO</h1>
+    <x-auth-session-status class="session-status" :status="session('status')" />
+    
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
