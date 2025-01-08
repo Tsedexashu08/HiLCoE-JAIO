@@ -1,13 +1,18 @@
+.add-post button:hover,
+.forum-search button:hover {
+    background-color: #0056b3;
+}
 .forum-card,
-.forum-page,
-.forum-header {
-    box-shadow: rgba(0, 0, 0.6, 0.4) 0 2px 4px, rgba(0, 0, 0, 0.3) 0 7px 13px -6px,
-        rgba(0, 0, 0.6, 0.2) 0 -3px 0 inset;
+.forum-header,
+.forum-page {
+    box-shadow: rgba(0, 0.5, 0.6, 0.4) 4px 0 4px,
+        rgba(0, 0, 0, 0.3) 0 7px 13px -6px, rgba(0, 0, 0.6, 0.2) 0 -4px 0 inset;
+    background-color: #fff;
 }
 #forum-image,
 #user-image {
     background-size: cover;
-    background-color: white;
+    background-color: #fff;
 }
 .post {
     display: none;
@@ -18,34 +23,70 @@
     padding: 10px;
     display: flex;
     gap: 10px;
+    transition: 0.5s;
 }
-.forum-content {
-    flex-direction: column;
+#forum-image:hover {
+    cursor: pointer;
+    opacity: 0.9;
+    border: 2px solid #fff;
+}
+#posted-at {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 5px 0 0;
 }
 .forum-card {
     width: 80%;
-    background-color: white;
+    background-color: #fff;
+    margin-bottom: 2%;
 }
 #intro {
-    color: black;
-    text-shadow: white 5px 2px 14px;
+    color: #000;
+    text-shadow: #fff 5px 2px 14px;
 }
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.images {
+    display: flex;
+    flex: 1 1 50%;
+    gap: 2px;
+}
+.forum-content,
 .forum-page {
     flex-direction: column;
+}
+.forum-page {
+    display: flex;
     align-items: center;
     justify-content: center;
     margin: auto;
     width: 90%;
+    overflow: auto;
+    height: auto;
 }
 .forum-container {
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    margin-top: 10px;
-    height: 100vh;
+    justify-content: center;
     text-align: flex-start;
     width: 100%;
+    gap: 4%;
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.forum-container::-webkit-scrollbar {
+    display: none;
 }
 #user-image {
     border-radius: 50%;
@@ -60,26 +101,24 @@
     border-bottom: 1px solid #000;
 }
 #forum-image {
-    border: 2px solid #000;
+    border: 1px solid #ccc;
     width: 100%;
-    height: 200px;
+    height: 400px;
     object-fit: cover;
-    border-radius: 10px;
 }
 .forum-header {
-    border: transparent 4px double;
+    border: 4px double transparent;
     border-radius: 15px;
-    text-shadow: black 5px 2px 5px;
+    text-shadow: #000 5px 2px 5px;
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
     align-items: center;
     overflow: hidden;
 }
-
 .forum-header h1 {
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: 700;
     color: #fff;
     margin: 0;
 }
@@ -88,64 +127,53 @@
     color: #666;
     margin: 5px 0 0;
 }
-
-.forum-content {
-    flex-direction: column;
+.add-post button,
+.forum-search button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
 }
 .forum-header {
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: 700;
     display: flex;
     flex-direction: column;
     text-align: center;
 }
-
+.add-post,
 .forum-search {
     display: flex;
     justify-content: center;
-    align-items: center;
     margin-top: 20px;
     height: 100%;
 }
-
+.forum-search {
+    align-items: center;
+}
 .forum-search input[type="text"] {
     width: 400px;
     padding: 10px;
     border: 1px double #f1f1f1;
     border-radius: 5px 0 0 5px;
-    outline: none;
+    outline: 0;
 }
-
 .forum-search button {
-    padding: 10px;
     border: 1px solid #f1f1f1;
     border-left: none;
-    background-color: #007bff;
-    color: white;
     border-radius: 0 5px 5px 0;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
 }
-
-.forum-search button:hover {
-    background-color: #0056b3;
-}
-
 .forum-search button svg {
     width: 25px;
     height: auto;
 }
-
 .add-post {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    background-color: white;
-    margin-top: 20px;
-    height: 100%;
+    background-color: #fff;
     width: 85%;
     gap: 2%;
     padding: 2%;
@@ -156,17 +184,15 @@
     text-shadow: none;
 }
 .add-post button {
-    padding: 10px;
     width: 25%;
-    background-color: #007bff;
-    color: white;
     border-radius: 5px;
-    cursor: pointer;
     justify-content: center;
     height: 100%;
 }
 .add-post button:hover {
-    background-color: #0056b3;
+    opacity: 0.9;
+    scale: 1.01;
+    transition: none;
 }
 .add-post img {
     width: 150px;
@@ -183,4 +209,70 @@
         opacity: 0;
         transform: scale(0.9);
     }
+}.comment-section {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+#add-comment{
+    display: none;
+
+}
+.comment-section {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;   /* Center vertically */
+    margin: 20px;
+    flex-direction: column; /* Stack items vertically */
+}
+
+.comment {
+    display: flex;
+    align-items: flex-start;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 15px; /* Increased rounding for corners */
+    padding: 15px; /* Added padding for better spacing */
+    margin-bottom: 15px;
+    width: 100%; /* Full width of the container */
+    max-width: 800px; /* Increased maximum width for larger screens */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Added shadow for depth */
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: #007BFF 2px solid;
+}
+
+.comment-input {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    resize: vertical;
+    margin-right: 10px;
+}
+
+.comment-input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+#post-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding:10px;
+    cursor: pointer;
+    font-weight: bolder;
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Center icon and text vertically */
+    text-align: center;
+}
+
+#post-button::hover{
+    background-color: rgb(64, 255, 47);
 }

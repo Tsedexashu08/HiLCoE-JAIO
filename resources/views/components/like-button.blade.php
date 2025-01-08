@@ -6,11 +6,8 @@
       <div class="like-counter">
         <span id="like-count">0</span> Likes
       </div>
-      <div class="comment-counter">
-        <x-comment-button /><span id="comment-counter">0</span>
-      </div>
     </label>
-
+</div>
 
 <script>
   document.querySelector('.like-container input').addEventListener('change', function() {

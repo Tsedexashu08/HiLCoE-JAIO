@@ -101,5 +101,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(ForumFeedback::class);
     }
-    
 }

@@ -7,5 +7,9 @@
     </style>
     <div class="p1">
         <h2>currently Logged in user is: {{ Auth::user()->name }}</h2>
+        @foreach ($posts as $post )
+        <h2>{{$post->content}}</h2>
+            
+        @endforeach
     </div>
 @endsection

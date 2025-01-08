@@ -12,6 +12,7 @@
                 </g>
             </svg>
             <p>Browse File to upload!</p>
+            <div id="image-preview" class="image-preview"></div>
         </div>
         <label for="file" class="file-footer">
             <svg fill="#000000" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -22,7 +23,7 @@
                     <path d="M18.153 6h-.009v5.342H23.5v-.002z"></path>
                 </g>
             </svg>
-            <p>Not selected file</p>
+            <p id="file-count">Not selected file</p>
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -36,6 +37,47 @@
                 </g>
             </svg>
         </label>
-        <input id="file" type="file" name="image">
+        <input id="file" type="file" name="image[]" multiple onchange="updateFileCount()">
     </div>
 </div>
+
+<script>
+    function updateFileCount() {
+        const input = document.getElementById('file');
+        const fileCount = input.files.length;
+        const fileCountText = fileCount > 0 ? `${fileCount} file(s) selected` : 'Not selected file';
+        document.getElementById('file-count').textContent = fileCountText;
+
+        const previewContainer = document.getElementById('image-preview');
+        previewContainer.innerHTML = '';
+
+        for (let i = 0; i < input.files.length; i++) {
+            const file = input.files[i];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.classList.add('thumbnail');
+                previewContainer.appendChild(img);
+            }
+
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+
+<style>
+    .image-preview {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+    .thumbnail {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+</style>

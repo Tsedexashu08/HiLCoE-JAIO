@@ -13,6 +13,17 @@ class ForumPost extends Model
         'content',
     ];
     
+   
+
+
+    public function forum_images()
+
+    {
+
+        return $this->hasMany(forum_post_image::class, 'post_id', 'post_id');
+
+    }
+    
     public function forum()
     {
         return $this->belongsTo(DiscussionForum::class);

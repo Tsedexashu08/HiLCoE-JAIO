@@ -62,8 +62,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 5%
-            height: 100%;
+            gap: 5% height: 100%;
             width: 100%;
             background-color: #022c50;
             color: white;
@@ -131,8 +130,9 @@
         <main class="h-100">
             {{ $slot }}
         </main>
+
         <footer>
-            <x-message-notifications/>
+            <x-message-notifications />
             <div class="footer">
                 <span class="contact-info">
                     <h2>Contact Us</h2>
@@ -148,3 +148,4 @@
 </body>
 
 </html>
+
