@@ -16,20 +16,18 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
 
-    public function Account(Request $request):View
+    public function Account(): View
     {
-        return view('profile.Account-Page', [
-            'user' => $request->user(),
-        ]);
+        return view('AccountPage');
     }
 
-    public function SideBar(Request $request):View
+    public function SideBar(Request $request): View
     {
         return view('profile.Side-bar', [
             'user' => $request->user(),
         ]);
     }
-    
+
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -58,7 +56,7 @@ class ProfileController extends Controller
     public function updateProfilePicture(Request $request): RedirectResponse
     {
         $request->validate([
-            'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $user = $request->user();

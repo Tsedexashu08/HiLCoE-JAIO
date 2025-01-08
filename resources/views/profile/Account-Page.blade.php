@@ -1,7 +1,7 @@
-@extends('dashboard')
-@section('content')
-
-@include('Side-bar')
-@yield('account')
-
-@endsection
+{{-- @extends('dashboard')
+@section('content') --}}
+    <div>
+        @include('Side-bar')
+        {{-- @yield('account') --}}
+    </div>
+{{-- @endsection --}}
