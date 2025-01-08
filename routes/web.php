@@ -41,9 +41,15 @@ Route::get('discussion', [DiscussionForumController::class, 'getPosts'])->name('
 Route::get('networking', function () {
     return view('networking-events-page');
 })->name('networking');
+// routes for networking account-page
+// Route::get('ap', function () {
+//     return view('AccountPage');
+// })->name('ap');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile', [ProfileController::class, 'Account'])->name('ap');
+ 
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::patch('/profile/picture', [ProfileController::class, 'updateProfilePicture'])->name('profile.picture.update'); // Updated route
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

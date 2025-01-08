@@ -1,4 +1,11 @@
 <link rel="stylesheet" href="{{asset('css/navigation-bar.css')}}">
+<style>
+nav{
+    position: relative;
+    z-index: 10;
+    width: 100%;
+}
+</style>
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -15,7 +22,7 @@
             <!-- Settings Dropdown -->
               
             <div class="hidden sm:flex sm:flex-col sm:items-center sm:ms-6 hover-border">
-                <x-dropdown align="right" width="50%">
+                <x-dropdown align="right" width="50%" z-index='20'>
                     <x-slot name="trigger">
                         <button
                             class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -38,7 +45,7 @@
                             <div class="arrow"></div>
                             <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture"
                                 style="padding: 12px; transition: 0.2s ease-in-out; height: 120px; width: 200px;" />
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('ap')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
                             <form method="POST" action="{{ route('logout') }}">
@@ -87,7 +94,7 @@
             </div>
             
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+                <x-responsive-nav-link :href="route('ap')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
                 <form method="POST" action="{{ route('logout') }}">
