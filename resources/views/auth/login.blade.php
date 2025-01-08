@@ -4,8 +4,16 @@
             margin-bottom: 1rem;
         }
 
+        h1{
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
         .form-group {
             margin-bottom: 1.5rem;
+            height: 10vh;
         }
 
         .input-text {
@@ -24,7 +32,6 @@
 
         .remember-me {
             margin-top: 1rem;
-
         }
 
         .checkbox {
@@ -55,10 +62,12 @@
             /* margin-left: 1rem; */
             text-align: center;
             width: 100%;
+            height: 50px;
         }
 
         button {
             text-align: center;
+            font-size: 26px;
         }
 
         .links {
@@ -68,8 +77,9 @@
         }
     </style>
     <!-- Session Status -->
+    <h1>HiLCoE JAIO</h1>
     <x-auth-session-status class="session-status" :status="session('status')" />
-
+    
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
