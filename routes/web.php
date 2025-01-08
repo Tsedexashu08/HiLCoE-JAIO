@@ -32,7 +32,8 @@ Route::get('discussion', function () {
 })->name('discussion');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile', [ProfileController::class, 'Account'])->name('profile.Account');
+    Route::get('/profile', [ProfileController::class, 'SideBar'])->name('profile.SideBar');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::patch('/profile/picture', [ProfileController::class, 'updateProfilePicture'])->name('profile.picture.update'); // Updated route
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

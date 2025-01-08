@@ -4,7 +4,7 @@
     align-items: center;                 /* Vertically center the text */
     justify-content: center;             /* Horizontally center the text */
     padding: 0.5rem 1rem;               /* Padding for the button */
-    background-color: #4A5568;          /* Gray background */
+    background-color: #223278;          /* Gray background */
     border: none;                       /* Remove border */
     border-radius: 0.375rem;            /* Rounded corners */
     font-size: 0.75rem;                  /* Font size */
@@ -17,7 +17,7 @@
 }
 
 .custom-button:hover {
-    background-color: #2D3748;          /* Darker gray on hover */
+    background-color: #0F1637;          /* Darker gray on hover */
 }
 
 .custom-button:focus {
