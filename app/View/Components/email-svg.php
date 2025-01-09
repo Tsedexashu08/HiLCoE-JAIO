@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class email-svg extends Component
+class emailsvg extends Component
 {
     /**
      * Create a new component instance.

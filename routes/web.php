@@ -10,9 +10,9 @@ Route::redirect('/', 'login');
 Route::get('p1',[DiscussionForumController::class,'trygetPosts'])->name('page1');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/home-page', function () {
+    return view('Home-Page');
+})->middleware(['auth','verified'])->name('dashboard');
 
 //routes for homepage
 Route::get('home', function () {
@@ -41,14 +41,14 @@ Route::get('discussion', [DiscussionForumController::class, 'getPosts'])->name('
 Route::get('networking', function () {
     return view('networking-events-page');
 })->name('networking');
-// routes for networking account-page
-// Route::get('ap', function () {
-//     return view('AccountPage');
-// })->name('ap');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::get('/profile', [ProfileController::class, 'Account'])->name('ap');
+    // routes for networking account-page
+    Route::get('ap', function () {
+        return view('AccountPage');
+    })->name('ap');
+    // Route::get('/profile', [ProfileController::class, 'Account'])->name('ap');
  
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::patch('/profile/picture', [ProfileController::class, 'updateProfilePicture'])->name('profile.picture.update'); // Updated route

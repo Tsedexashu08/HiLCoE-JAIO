@@ -1,8 +1,7 @@
-@extends('dashboard')
-@section('content')
+<x-app-layout>
     <link rel="stylesheet" href="{{ asset('css/home-page.css') }}">
     <div class="home-page">
-        
+
         <section class="home-section">
             <h1>Your Career Journey Starts Here!</h1>
             <h3>HiLCoE's unofficial Job, Internship, and Apprenticeship Opportunities</h3>
@@ -13,7 +12,7 @@
                 </svg>
             </div>
         </section>
-        
+
         <!-- Job Openings Section -->
         <section class="openings-section">
             <h3>Check Out Some Recent Openings</h3>
@@ -44,7 +43,7 @@
                     <p>Summer, 2021</p>
                 </div>
             </div>
-            
+
             <span><a href="joblisting">see more > </a></span>
         </section>
         <!-- Announcements Section -->
@@ -57,7 +56,8 @@
             <div id="announce-container">
                 <section>
                     <div class="announcement">
-                        <img src="{{ asset('images/dPpb6vgo9pj77jOL8uneYfbLtIA9cjFrJCAO4iAw.png') }}" alt="Cheese Image">
+                        <img src="{{ asset('images/dPpb6vgo9pj77jOL8uneYfbLtIA9cjFrJCAO4iAw.png') }}"
+                            alt="Cheese Image">
                         <div class="announcement-content">
                             <h2>13. Dec 2024</h2>
                             <p>Don't know what to add</p>
@@ -71,17 +71,17 @@
                         </div>
                     </div>
                 </section>
-                
+
                 <div class="subscribe">
                     <x-email-svg />
                     <input type="text" placeholder="Email Address" />
                     <button>Subscribe</button>
                 </div>
             </div>
-            
-        </div>
+
+    </div>
     </section>
-</div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"></script>
     <script src="{{ asset('js/profile.js') }}"></script>
@@ -103,4 +103,4 @@
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
         });
     </script>
-@endsection
+</x-app-layout>

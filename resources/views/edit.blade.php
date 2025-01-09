@@ -1,4 +1,4 @@
-<div id="edit">
+<div id="edit" style="height: 100vh">
     <x-slot name="header">
         <h1 class="font-semibold text-xl text-gray-800 leading-tight text-center">
             {{ __('Profile') }}
