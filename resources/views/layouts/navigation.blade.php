@@ -45,7 +45,7 @@ nav{
                             <div class="arrow"></div>
                             <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture"
                                 style="padding: 12px; transition: 0.2s ease-in-out; height: 120px; width: 200px;" />
-                            <x-dropdown-link :href="route('ap')">
+                            <x-dropdown-link :href="route('account')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
                             <form method="POST" action="{{ route('logout') }}">
@@ -94,7 +94,7 @@ nav{
             </div>
             
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('ap')">
+                <x-responsive-nav-link :href="route('account')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
                 <form method="POST" action="{{ route('logout') }}">

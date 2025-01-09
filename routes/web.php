@@ -45,9 +45,9 @@ Route::get('networking', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     // routes for networking account-page
-    Route::get('ap', function () {
+    Route::get('account', function () {
         return view('AccountPage');
-    })->name('ap');
+    })->name('account');
     // Route::get('/profile', [ProfileController::class, 'Account'])->name('ap');
  
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

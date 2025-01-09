@@ -3,7 +3,10 @@
         <div class="image">
             <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="profile-picture">
         </div>
-        <span>{{ Auth::user()->name }}</span>
+        <section class="credentials">
+            <span>{{ Auth::user()->name }}</span>
+            <h2>{{ Auth::user()->email }}</h2>
+        </section>
         <ul>
             <li><button id="applied-careers-link">Applied Careers</button></li>
             <li><button id="resume-link">Update Resume</button></li>

@@ -30,5 +30,10 @@
         </div>
     </div>
 </div>
+<style>
+    #edit::-webkit-scrollbar{
+        display: none;
+    }
+</style>
 
 

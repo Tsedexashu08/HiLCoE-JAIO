@@ -141,6 +141,45 @@
     border-width: 10px;
     border-style: solid;
 }
+
+.chat-sidebar  .search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-bottom: 1.7px solid #ccc;
+    padding: 8px;
+    padding-top: 15px;
+    width: 100%;
+    background-color:rgb(255, 255, 250);
+    margin: 0 auto; 
+
+}
+.chat-sidebar .search-bar input {
+    border: none;
+    border-bottom: #ccc 0.8px solid;
+    outline:none;
+    flex: 1;
+    padding: 10px;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding-left: 15px;
+}
+
+.chat-sidebar .search-bar button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.chat-sidebar .search-bar svg {
+    width: 20px;
+    height: 20px;
+}
 .chat-messages {
     flex: 1;
     padding: 15px;
