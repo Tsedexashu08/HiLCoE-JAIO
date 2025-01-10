@@ -117,6 +117,7 @@ nav{
         <x-nav-link href="networking" active="{{ request()->routeIs('networking') }}">Networking Events</x-nav-link>
         <x-nav-link href="{{ route('discussion') }}" active="{{ request()->routeIs('discussion') }}">Discussion Forums</x-nav-link>
         <x-nav-link href="{{ route('page1') }}" active="{{ request()->routeIs('page1') }}">Resources</x-nav-link>
+        <x-nav-link href="user-management" active="{{ request()->routeIs('users') }}">User Management</x-nav-link>
     </nav>
 
     <!-- Mobile Navigation Links -->

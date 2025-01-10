@@ -33,6 +33,10 @@ Route::post('add-post', [DiscussionForumController::class, 'addPost'])->name('di
 Route::get('joblisting', function () {
     return view('Job-Listing-Page');
 })->name('joblisting');
+//user managment route(will change to be role checked after i've figured out the roles & permissions thing).
+Route::get('user-management', function () {
+    return view('user-managment-page');
+})->name('users');
 
 //Routes for discussion-forum-page
 Route::get('discussion', [DiscussionForumController::class, 'getPosts'])->name('discussion');
