@@ -23,8 +23,8 @@ class DiscussionForum extends Model
     }
 
     public function postsWithfeedback()
-    {
-        return $this->posts()->with('ForumPosts','feedback');
-    }
+{
+    return $this->posts()->with('feedback.user'); // Load feedback along with the user for each feedback
+}
     
 }

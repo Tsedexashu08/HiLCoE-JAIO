@@ -41,6 +41,6 @@ class ForumPost extends Model
 
     public function feedback()
     {
-        return $this->hasMany(ForumFeedback::class);
+        return $this->hasMany(ForumFeedback::class ,'comment_id','post_id');
     }
 }

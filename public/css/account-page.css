@@ -53,7 +53,25 @@
     border-radius: 50%
 }
 
+ #applied-careers-link, #resume-link, #edit-link {
+    display: flex;
+    gap: 10%;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 5%;
+    /* transition: 0.2s ease; */
+}
 
+#applied-careers-link svg, #resume-link svg, #edit-link svg{
+      height: 60px;
+}
+
+#applied-careers-link:hover, #resume-link:hover, #edit-link:hover{
+
+    border: 2px solid grey;
+    /* scale: 1.01; */
+}
 .side-nav span {
     font-weight: 800;
     font-size: 24px;
@@ -83,12 +101,14 @@
 .side-nav ul li button:hover {
     color: #1468BF;
 }
-.credentials{
+
+.credentials {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
 #applied {
     display: none;
 }

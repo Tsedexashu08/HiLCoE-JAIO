@@ -1,4 +1,5 @@
 @extends('dashboard')
+
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/discussion-forum-page.css') }}">
     <div class="forum-page">
@@ -26,7 +27,7 @@
                         learn from others.</p>
                 </section>
                 <button
-                    style="display: flex; align-items: center; gap:1% ;padding: 10px;  background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    style="display: flex; align-items: center; gap:1%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
                     Add Post
                     <svg fill="#ffffff" height="24px" width="24px" version="1.1" id="Layer_1"
                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 210 256"
@@ -42,12 +43,12 @@
         </div>
         @include('components.add-post')
         <div class="forum-container">
-            @foreach ($posts as $post)
+            @foreach ($posts as $forum)
                 <div class="forum-card">
                     <section id="forum-header">
                         <span>
-                            @if (count($post['posts']) > 0)
-                                <img src="{{ asset('storage/' . $post['posts'][0]['user']['profile_picture']) }}"
+                            @if ($forum['posts']->isNotEmpty())
+                                <img src="{{ asset('storage/' . $forum['posts'][0]['user']['profile_picture']) }}"
                                     alt="User Image" id="user-image" class="img-fluid">
                             @else
                                 <img src="{{ asset('images/default-user.png') }}" alt="Default User Image" id="user-image"
@@ -55,20 +56,18 @@
                             @endif
                         </span>
                         <span>
-                            @if (count($post['posts']) > 0)
-                                <h1>{{ $post['posts'][0]['user']['name'] }} </h1>
-                                <b><span>{{ $post['posts'][0]['user']['role'] }} </span></b>
-                                <span id="posted-at"> - Posted at:
-                                    {{ $post['posts'][0]['created_at'] }}</span>
+                            @if ($forum['posts']->isNotEmpty())
+                                <h1>{{ $forum['posts'][0]['user']['name'] }}</h1>
+                                <b><span>{{ $forum['posts'][0]['user']['role'] }}</span></b>
+                                <span id="posted-at"> - Posted at: {{ $forum['posts'][0]['created_at'] }}</span>
                             @else
                                 <span>No posts available.</span>
                             @endif
                         </span>
-
                     </section>
                     <section class="forum-content">
-                        <h2>{{ $post['topic'] }}</h2>
-                        @foreach ($post['posts'] as $forumPost)
+                        <h2>{{ $forum['topic'] }}</h2>
+                        @foreach ($forum['posts'] as $forumPost)
                             <p>{{ $forumPost['content'] }}</p>
                             <div class="images">
                                 @foreach ($forumPost['images'] as $image)

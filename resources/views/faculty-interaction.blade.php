@@ -28,7 +28,9 @@
                                 <p>{{ $user->role }}</p>
                             </section>
                         </div>
-                        <div class="not-found" style="display: none"><h2>not found...</h2></div>
+                        <div class="not-found" style="display: none">
+                            <h2>not found...</h2>
+                        </div>
                     </div>
                 @endforeach
             </div>
@@ -258,12 +260,9 @@
                 // Check if the user's name includes the search term
                 if (userName.includes(searchTerm)) {
                     user.style.display = ''; // Showing user if it matches
-                     notfound.style.display='none'
-                    } else if(userName.includes(searchTerm)===null){
-                        notfound.style.display=''
-                    
-                    }else {
-                        user.style.display = 'none'; // Hiding user if it doesn't match
+                    notfound.style.display = 'none'
+                } else {
+                    user.style.display = 'none'; // Hiding user if it doesn't match
                 }
             });
         });

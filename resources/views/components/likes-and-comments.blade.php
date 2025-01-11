@@ -35,7 +35,6 @@
                     </g>
                 </svg>
             </button>
-
             <span
                 class="absolute -top-14 left-[50%] -translate-x-[50%] z-20 origin-left scale-0 px-3 rounded-lg border border-gray-300 bg-white py-2 text-sm font-bold shadow-md transition-all duration-300 ease-in-out group-hover:scale-100">Comment
                 <span> </span></span>
@@ -121,18 +120,17 @@
     }
 </style>
 <script>
-
-document.querySelectorAll('.cmnt-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const postId = this.getAttribute('data-post-id');
-        const addComment = document.getElementById('add-comment');
-        if (addComment) {
+    document.querySelectorAll('.cmnt-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const postId = this.getAttribute('data-post-id');
+            const addComment = document.getElementById('add-comment');
+            if (addComment) {
                 if (addComment.style.display == 'none')
                     addComment.style.display = 'block';
                 else
                     addComment.style.display = 'none';
 
             }
+        });
     });
-});
 </script>
