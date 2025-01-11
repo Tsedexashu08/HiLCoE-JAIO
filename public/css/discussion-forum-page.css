@@ -276,3 +276,78 @@
 #post-button::hover{
     background-color: rgb(64, 255, 47);
 }
+.cmts {
+    display: flex;
+}
+
+.likes-and-comments {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    align-items: center;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin: 1%;
+}
+
+.likes-and-comments .like-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.likes-and-comments .like-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    margin-right: 20px;
+}
+
+.likes-and-comments svg {
+    height: 32px;
+    width: 32px;
+    transition: all 0.3s;
+    fill: #666;
+}
+
+.likes-and-comments svg:hover {
+    transform: scale(1.1) rotate(-10deg);
+}
+
+.likes-and-comments .like-container input:checked~svg {
+    fill: #2196F3;
+}
+
+.like-counter,
+.comment-counter {
+    margin-left: 8px;
+    font-size: 16px;
+    color: #666;
+}
+
+.comment-container button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.comment-container svg {
+    height: 32px;
+    width: 32px;
+    fill: #666;
+    transition: all 0.3s;
+}
+
+.comment-container svg:hover {
+    fill: #2196F3;
+}

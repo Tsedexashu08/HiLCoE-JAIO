@@ -21,5 +21,10 @@ class DiscussionForum extends Model
     {
         return $this->posts()->with('forum_images','user');
     }
+
+    public function postsWithfeedback()
+    {
+        return $this->posts()->with('ForumPosts','feedback');
+    }
     
 }

@@ -69,6 +69,7 @@ class DiscussionForumController extends Controller
                     'created_at' => $forum->created_at,
                     'posts' => $forum->postsWithImages->map(function ($post) {
                         return [
+                            'post_id'=>$post->post_id,
                             'content' => $post->content,
                             'user' => [
                                 'name' => $post->user->name,
@@ -85,6 +86,7 @@ class DiscussionForumController extends Controller
             });
 
         return view('Discussion-Forum-page', ['posts' => $posts]);
+        // return (['posts' => $posts]);
     }
     public function trygetPosts() //this just what i use for testing fetched data(see them page1).
     {

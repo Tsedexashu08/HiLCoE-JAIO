@@ -9,11 +9,11 @@
                 <div class="search-bar">
                     <input type="text" placeholder="  search chat">
                     <button>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
                     </button>
                 </div>
                 @foreach ($users as $user)
@@ -25,9 +25,10 @@
                             </section>
                             <section>
                                 <h4>{{ $user->name }}</h4>
-                                <p>{{$user->role}}</p>
+                                <p>{{ $user->role }}</p>
                             </section>
                         </div>
+                        <div class="not-found" style="display: none"><h2>not found...</h2></div>
                     </div>
                 @endforeach
             </div>
@@ -108,7 +109,7 @@
                     sessionStorage.setItem('chat_id', data.chat_id);
                     //silly logic ik buut bare wid me...
 
-                //  if the chat already exists(will takle out existingchat bool var. was just using it to check for already existing sessions).
+                    //  if the chat already exists(will takle out existingchat bool var. was just using it to check for already existing sessions).
                     if (data.existing_chat) {
                         console.log('Existing chat session.');
                     }
@@ -204,45 +205,67 @@
         }
         // Event listener for send button
         document.addEventListener('click', function(event) {
-    if (event.target && event.target.id === 'send-button') {
-        const inputField = document.querySelector('.chat-input input[type="text"]');
-        const message = inputField.value.trim();
+            if (event.target && event.target.id === 'send-button') {
+                const inputField = document.querySelector('.chat-input input[type="text"]');
+                const message = inputField.value.trim();
 
-        // Check if the message is not empty
-        if (message) {
-            // Create a new outgoing message div
-            const messageDiv = document.createElement('div');
-            const timestamp = document.createElement('p');
-            timestamp.classList.add('time-stamp')
+                // Check if the message is not empty
+                if (message) {
+                    // Create a new outgoing message div
+                    const messageDiv = document.createElement('div');
+                    const timestamp = document.createElement('p');
+                    timestamp.classList.add('time-stamp')
 
-            // Get current time(uk for like shoeing when it was sent at that time.)
-            const now = new Date();
-            const hours = now.getHours();
-            const minutes = now.getMinutes();
-        
-            // Format the time
-            const formattedTime = `${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
-            timestamp.textContent = "sent at :" + formattedTime; // Set the timestamp text
+                    // Get current time(uk for like shoeing when it was sent at that time.)
+                    const now = new Date();
+                    const hours = now.getHours();
+                    const minutes = now.getMinutes();
 
-            messageDiv.classList.add('outgoing-message');
-            messageDiv.textContent = message;
-            messageDiv.appendChild(timestamp); // Append timestamp to message div
+                    // Format the time
+                    const formattedTime = `${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+                    timestamp.textContent = "sent at :" + formattedTime; // Set the timestamp text
 
-            // Append the new message to the chat messages container
-            const chatMessages = document.querySelector('.chat-messages');
-            chatMessages.appendChild(messageDiv);
+                    messageDiv.classList.add('outgoing-message');
+                    messageDiv.textContent = message;
+                    messageDiv.appendChild(timestamp); // Append timestamp to message div
 
-            // Clear the input field
-            inputField.value = '';
+                    // Append the new message to the chat messages container
+                    const chatMessages = document.querySelector('.chat-messages');
+                    chatMessages.appendChild(messageDiv);
 
-            // Optionally, scroll to the bottom of the chat messages
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+                    // Clear the input field
+                    inputField.value = '';
 
-            // Send the message to the server
-            const senderId = {{ Auth::user()->id }}; // authenticated user's ID
-            sendMessage(senderId, message);
-        }
-    }
-});
+                    // Optionally, scroll to the bottom of the chat messages
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                    // Send the message to the server
+                    const senderId = {{ Auth::user()->id }}; // authenticated user's ID
+                    sendMessage(senderId, message);
+                }
+            }
+        });
+
+        // searching functionality for z search thingy.
+
+        document.querySelector('.search-bar input').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase(); // Get the search term
+            const users = document.querySelectorAll('.chat-link'); // Get all user elements
+            const notfound = document.querySelector('.not-found');
+
+            users.forEach(user => {
+                const userName = user.dataset.userName.toLowerCase(); // Get the user's name
+                // Check if the user's name includes the search term
+                if (userName.includes(searchTerm)) {
+                    user.style.display = ''; // Showing user if it matches
+                     notfound.style.display='none'
+                    } else if(userName.includes(searchTerm)===null){
+                        notfound.style.display=''
+                    
+                    }else {
+                        user.style.display = 'none'; // Hiding user if it doesn't match
+                }
+            });
+        });
     </script>
 @endsection
