@@ -1,10 +1,10 @@
-<link rel="stylesheet" href="{{asset('css/navigation-bar.css')}}">
+<link rel="stylesheet" href="{{ asset('css/navigation-bar.css') }}">
 <style>
-nav{
-    position: relative;
-    z-index: 10;
-    width: 100%;
-}
+    nav {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+    }
 </style>
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
@@ -20,7 +20,7 @@ nav{
             </div>
             <h1>HiLCoE JAIO</h1>
             <!-- Settings Dropdown -->
-              
+
             <div class="hidden sm:flex sm:flex-col sm:items-center sm:ms-6 hover-border">
                 <x-dropdown align="right" width="50%" z-index='20'>
                     <x-slot name="trigger">
@@ -28,7 +28,10 @@ nav{
                             class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                             <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture"
                                 class="profilepic">
-                            <div class=" username">{{ Auth::user()->name }}</div>
+                            <div class=" username">
+                                {{ Auth::user()->name }}
+                                <span>{{ Auth::user()->role }}</span>
+                            </div>
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20">
@@ -39,7 +42,7 @@ nav{
                             </div>
                         </button>
                     </x-slot>
-                    
+
                     <x-slot name="content">
                         <div class="relative">
                             <div class="arrow"></div>
@@ -83,16 +86,16 @@ nav{
                 {{ __('HOME') }}
             </x-responsive-nav-link>
         </div>
-        
+
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
                 <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile Picture"
-                class="profilepic">
+                    class="profilepic">
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
-            
+
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('account')">
                     {{ __('Profile') }}
@@ -100,7 +103,7 @@ nav{
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <x-responsive-nav-link :href="route('logout')"
-                    onclick="event.preventDefault();
+                        onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
@@ -108,14 +111,15 @@ nav{
             </div>
         </div>
     </div>
-    
+
     <!-- Desktop Navigation Links -->
     <nav class="bg-white border-b border-gray-100 h-16 flex items-center justify-center border-2 gap-2 ">
         <x-nav-link href="home" active="{{ request()->routeIs('home') }}">Home</x-nav-link>
         <x-nav-link href="messages" active="{{ request()->routeIs('messages') }}">Faculty Interaction</x-nav-link>
         <x-nav-link href="joblisting" active="{{ request()->routeIs('joblisting') }}">Job Listings</x-nav-link>
         <x-nav-link href="networking" active="{{ request()->routeIs('networking') }}">Networking Events</x-nav-link>
-        <x-nav-link href="{{ route('discussion') }}" active="{{ request()->routeIs('discussion') }}">Discussion Forums</x-nav-link>
+        <x-nav-link href="{{ route('discussion') }}" active="{{ request()->routeIs('discussion') }}">Discussion
+            Forums</x-nav-link>
         <x-nav-link href="{{ route('page1') }}" active="{{ request()->routeIs('page1') }}">Resources</x-nav-link>
         <x-nav-link href="user-management" active="{{ request()->routeIs('users') }}">User Management</x-nav-link>
     </nav>

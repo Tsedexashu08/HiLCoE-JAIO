@@ -63,7 +63,7 @@ class ProfileController extends Controller
 
         // Store the image if it exists
         if ($request->hasFile('profile_picture')) {
-            // Delete old profile picture if it exists
+            // Deleting old profile picture if it exists.
             if ($user->profile_picture) {
                 Storage::disk('public')->delete($user->profile_picture);
             }
@@ -75,7 +75,7 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return Redirect::route('profile.edit')->with('status', 'Profile picture updated successfully!');
+        return Redirect::route('account')->with('status', 'Profile picture updated successfully!');
     }
 
     /**
