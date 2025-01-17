@@ -19,18 +19,21 @@ class AdminSeeder extends Seeder
                         'email' => 'maki@gmail.com',
                         'password' => bcrypt('maki1234'),
                 ])->assignRole('Admin');
+
                 User::create([
                         'name' => 'Natinayel Zemedkun',
                         'profile_picture' => 'profile_pics/nati.jpg',
                         'email' => 'nati@gmail.com',
                         'password' => bcrypt('nati1234'),
                 ])->assignRole('Admin');
+
                 User::create([
                         'name' => 'Fikir Bisrat',
                         'profile_picture' => 'profile_pics/fi.png',
                         'email' => 'brownie@gmail.com',
                         'password' => bcrypt('brownie123'),
                 ])->assignRole('Admin');
+                
                 User::create([
                         'name' => 'Tsedalu Ashenafi',
                         'profile_picture' => 'profile_pics/tsed.png',

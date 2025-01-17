@@ -21,7 +21,7 @@
             <h1>HiLCoE JAIO</h1>
             <!-- Settings Dropdown -->
 
-            <div class="hidden sm:flex sm:flex-col sm:items-center sm:ms-6 hover-border">
+            <div class="hidden sm:flex sm:flex-col sm:items-center sm:ms-6 hover-border ml-32">
                 <x-dropdown align="right" width="50%" z-index='20'>
                     <x-slot name="trigger">
                         <button
@@ -30,7 +30,7 @@
                                 class="profilepic">
                             <div class=" username">
                                 {{ Auth::user()->name }}
-                                <span>{{ Auth::user()->type }}</span>
+                                <span>{{ Auth::user()->getRoleNames()->first() }}</span>
                             </div>
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"

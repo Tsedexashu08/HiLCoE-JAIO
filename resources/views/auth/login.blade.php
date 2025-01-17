@@ -4,9 +4,9 @@
             margin-bottom: 1rem;
         }
 
-        h1{
+        #heading{
             text-align: center;
-            font-size: 24px;
+            font-size: 30px;
             font-weight: 700;
             margin-bottom: 2rem;
         }
@@ -74,10 +74,19 @@
             display: flex;
             gap: 2%;
             white-space: nowrap;
+            align-items: center;
+            justify-content: center;
         }
     </style>
     <!-- Session Status -->
-    <h1>HiLCoE JAIO</h1>
+  <!-- Logo -->
+<div class="shrink-0 h-25 flex items-center justify-center  align-items-center gap-6 mb-3 mr-3">
+    <a href="{{ route('dashboard') }}">
+        <x-application-logo class="block h-auto w-auto fill-current text-gray-800" />
+    </a>
+    <h1 id="heading" class=" mt-6 ">HiLCoE JAIO</h1>
+</div>
+
     <x-auth-session-status class="session-status" :status="session('status')" />
     
     <form method="POST" action="{{ route('login') }}">
@@ -109,20 +118,17 @@
             </label>
         </div>
 
-        <div class="links">
-            <a class="link" href="{{ route('register') }}">
-                {{ __('Dont have an account? signup') }}
-            </a>
-            @if (Route::has('password.request'))
-                <a class="link" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-        </div>
         <div class="action-buttons">
             <x-primary-button class="login-button">
                 {{ __('Log in') }}
             </x-primary-button>
         </div>
+            <div class="links">
+                @if (Route::has('password.request'))
+                    <a class="link" href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </a>
+                @endif
+            </div>
     </form>
 </x-guest-layout>

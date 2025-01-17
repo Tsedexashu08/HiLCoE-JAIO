@@ -1,142 +1,89 @@
-<style>
-  .container {
-    --transition: 350ms;
-    --folder-W: 100px;
-    --folder-H: 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 10px;
-    background: linear-gradient(135deg, #6dd5ed, #2193b0);
-    border-radius: 15px;
-    /* box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); */
-    height: calc(var(--folder-H) * 1.4);
-    position: relative;
-  }
-  
-  .folder {
-    position: absolute;
-    top: -20px;
-    left: calc(50% - 60px);
-    animation: float 2.5s infinite ease-in-out;
-    transition: transform var(--transition) ease;
-  }
-  
-  .folder:hover {
-    transform: scale(1.05);
-  }
-  
-  .folder .front-side,
-  .folder .back-side {
-    position: absolute;
-    transition: transform var(--transition);
-    transform-origin: bottom center;
-  }
-  
-  .folder .back-side::before,
-  .folder .back-side::after {
-    content: "";
-    display: block;
-    background-color: white;
-    opacity: 0.5;
-    z-index: 0;
-    width: var(--folder-W);
-    height: var(--folder-H);
-    position: absolute;
-    transform-origin: bottom center;
-    border-radius: 15px;
-    transition: transform 350ms;
-    z-index: 0;
-  }
-  
-  .container:hover .back-side::before {
-    transform: rotateX(-5deg) skewX(5deg);
-  }
-  .container:hover .back-side::after {
-    transform: rotateX(-15deg) skewX(12deg);
-  }
-  
-  .folder .front-side {
-    z-index: 1;
-  }
-  
-  .container:hover .front-side {
-    transform: rotateX(-40deg) skewX(15deg);
-  }
-  
-  .folder .tip {
-    background: linear-gradient(135deg, #ff9a56, #ff6f56);
-    width: 80px;
-    height: 20px;
-    border-radius: 12px 12px 0 0;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    position: absolute;
-    top: -10px;
-    z-index: 2;
-  }
-  
-  .folder .cover {
-    background: linear-gradient(135deg, #ffe563, #ffc663);
-    width: var(--folder-W);
-    height: var(--folder-H);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-  }
-  
-  .custom-file-upload {
-    font-size: 1.1em;
-    color: #ffffff;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: background var(--transition) ease;
-    display: inline-block;
-    width: 100%;
-    padding: 10px 35px;
-    position: relative;
-  }
-  
-  .custom-file-upload:hover {
-    background: rgba(255, 255, 255, 0.4);
-  }
-  
-  .custom-file-upload input[type="file"] {
-    display: none;
-  }
-  
-  @keyframes float {
-    0% {
-      transform: translateY(0px);
-    }
-  
-    50% {
-      transform: translateY(-20px);
-    }
-  
-    100% {
-      transform: translateY(0px);
-    }
-  }
-  
-  .container:hover .custom-file-upload {
-    transform: scale(1.05);
-  }
-  </style>
-  <div class="container">
-    <div class="folder">
-        <div class="front-side">
-            <div class="tip"></div>
-            <div class="cover"></div>
+<div>
+    <link rel="stylesheet" href="{{ asset('css/file-upload.css') }}">
+    <div class="file-container">
+        <div class="file-header" id="file-header">
+            <div id="image-preview" class="image-preview"></div>
+            <svg id="svg-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M7 10V9C7 6.23858 9.23858 4 12 4C14.7614 4 17 6.23858 17 9V10C19.2091 10 21 11.7909 21 14C21 15.4806 20.1956 16.8084 19 17.5M7 10C4.79086 10 3 11.7909 3 14C3 15.4806 3.8044 16.8084 5 17.5M7 10C7.43285 10 7.84965 10.0688 8.24006 10.1959M12 12V21M12 12L15 15M12 12L9 15"
+                    stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+            <p id="browsemsg">Browse File to upload!</p>
         </div>
-        <div class="back-side cover"></div>
+        <label for="file" class="file-footer">
+            <svg fill="#000000" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.331 6H8.5v20h15V14.154h-8.169z"></path>
+                <path d="M18.153 6h-.009v5.342H23.5v-.002z"></path>
+            </svg>
+            <p id="file-count">Not selected file</p>
+        </label>
+        <input id="file" type="file" name="profile_picture" accept="image/*" onchange="updateFileCount()">
     </div>
-    <label class="custom-file-upload">
-        <input type="file" name="profile_picture" required /> 
-        Choose a file
-    </label>
-  </div>
-  
+</div>
+
+<script>
+    function updateFileCount() {
+        const input = document.getElementById('file');
+        const fileCount = input.files.length;
+        const fileCountText = fileCount > 0 ? `${fileCount} file(s) selected` : 'Not selected file';
+        document.getElementById('file-count').textContent = fileCountText;
+
+        const previewContainer = document.getElementById('image-preview');
+        previewContainer.innerHTML = '';
+
+        // Hide SVG and browse message on file select
+        if (fileCount > 0) {
+            document.getElementById('svg-icon').style.display = 'none';
+            document.getElementById('browsemsg').style.display = 'none';
+        }
+
+        for (let i = 0; i < input.files.length; i++) {
+            const file = input.files[i];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.classList.add('thumbnail');
+                previewContainer.appendChild(img);
+            }
+
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+
+<style>
+    .file-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-height:65% ;
+    }
+
+    .file-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-height: 90%;
+    }
+
+    .image-preview {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .thumbnail {
+        border-radius: 50%;
+        width: 75%;
+        max-height: 75%;
+        object-fit: cover;
+        object-position: center;
+        border: 4px double #ccc;
+    }
+</style>

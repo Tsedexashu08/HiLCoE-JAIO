@@ -13,7 +13,7 @@ use function Pest\Laravel\json;
 
 class DiscussionForumController extends Controller
 {
-   
+
     public function addPost(Request $request)
     {
         $request->validate([
@@ -54,15 +54,15 @@ class DiscussionForumController extends Controller
 
         return redirect()->back()->with('message', 'posted succesfully');
     }
-    
+
     public function getPosts()
     {
         // Eager load discussions, their posts, images, and user relationships
         $forums = DiscussionForum::with([
-                'postsWithImages.forum_images', 
-                'postsWithImages.user',
-                'postsWithfeedback.feedback.user'
-            ])
+            'postsWithImages.forum_images',
+            'postsWithImages.user',
+            'postsWithImages.feedback.user' // Ensure feedback is eager loaded
+        ])
             ->orderBy('created_at', 'desc')
             ->get();
     
@@ -70,20 +70,31 @@ class DiscussionForumController extends Controller
         $posts = $forums->map(function ($forum) {
             return [
                 'topic' => $forum->topic,
-                'created_at' => $forum->created_at->format('Y-m-d H:i'),
+                'created_at' => $forum->created_at->format('Y-m-d H:i'), // Forum created_at
                 'posts' => $forum->postsWithImages->map(function ($post) {
                     return [
                         'post_id' => $post->post_id,
                         'content' => $post->content,
                         'user' => [
                             'name' => $post->user->name,
-                            'role' => $post->user->role,
+                            'role' => $post->user->getRoleNames()->first(),
                             'profile_picture' => $post->user->profile_picture,
                         ],
                         'images' => $post->forum_images->map(function ($image) {
                             return $image->image;
                         }),
-                        'created_at' => $post->created_at->format('l, H:i'),
+                        'created_at' => $post->created_at->format('Y-m-d H:i'), // Post created_at
+                        // 'created_at' => $feedback->created_at->format('Y-m-d H:i'), // Feedback created_at
+                        'feedback' => $post->feedback->map(function ($feedback) {
+                            return [
+                                'comment_id' => $feedback->comment_id, // feedback ID
+                                'content' => $feedback->content,
+                                'user' => [
+                                    'name' => $feedback->user->name,
+                                    'profile_picture' => $feedback->user->profile_picture,
+                                ],
+                            ];
+                        }),
                     ];
                 }),
             ];
@@ -91,19 +102,19 @@ class DiscussionForumController extends Controller
     
         return view('Discussion-Forum-page', ['posts' => $posts]);
     }
-    
+
     public function trygetPosts() //this just what i use for testing fetched data(see them page1).
     {
         // $posts = ForumPost::pluck('content');
-        $posts = DiscussionForum::with(['postsWithImages.forum_images', 'postsWithImages.user'])->get();
-        return view('page1', ['posts' => $posts]);
+        $posts = DiscussionForum::with(['postsWithImages.forum_images', 'postsWithImages.user', 'postsWithfeedback.feedback.user'])->get();
+        return (compact('posts'));
     }
 
     public function index()
     {
         // Retrieve all forums with their posts, images, and user data
         $forums = DiscussionForum::with(['postsWithImages.user', 'postsWithImages.forum_images', 'postsWithfeedback.feedback.user'])
-        ->orderBy('created_at', 'desc')  ->get();
+            ->orderBy('created_at', 'desc')->get();
 
         return view('Discussion-Forum-page', compact('forums'));
     }

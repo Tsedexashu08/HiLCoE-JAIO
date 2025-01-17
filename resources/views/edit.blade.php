@@ -1,11 +1,5 @@
 <div id="edit" style="height: 100vh">
-    {{-- <x-slot name="header">
-        <h1 class="font-semibold text-xl text-gray-800 leading-tight text-center">
-            {{ __('Profile') }}
-        </h1>
-    </x-slot> --}}
-    
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
         <div class="py-12">{{--this part is the profile pic section for updating the user profile pic.--}}
         @include('Profile-card')
         </div>

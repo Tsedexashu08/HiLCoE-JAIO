@@ -25,7 +25,7 @@
                             </section>
                             <section>
                                 <h4>{{ $user->name }}</h4>
-                                <p>{{ $user->role }}</p>
+                                <p>{{ $user->getRoleNames()->first() }}</p>
                             </section>
                         </div>
                         <div class="not-found" style="display: none">

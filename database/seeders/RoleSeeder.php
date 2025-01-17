@@ -16,8 +16,8 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         //creating roles to assign to our users.
-        $Faculty = Role::create(['name' => 'Faculty']);
         $Admin = Role::create(['name' => 'Admin']);
+        $Faculty = Role::create(['name' => 'Faculty']);
         $Student = Role::create(['name' => 'Student']);
 
         //assigning the roles specific permissions(stuff they'll be able to do).

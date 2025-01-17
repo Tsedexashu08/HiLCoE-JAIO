@@ -58,7 +58,7 @@
                         <span>
                             @if ($forum['posts']->isNotEmpty())
                                 <h1>{{ $forum['posts'][0]['user']['name'] }}</h1>
-                                <b><span>{{ $forum['posts'][0]['user']['role'] }}</span></b>
+                                <b><span>{{ $forum['posts'][0]['user']['role']}}</span></b>
                                 <span id="posted-at"> - Posted at: {{ $forum['posts'][0]['created_at'] }}</span>
                             @else
                                 <span>No posts available.</span>

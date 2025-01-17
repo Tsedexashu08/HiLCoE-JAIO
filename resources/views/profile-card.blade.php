@@ -170,7 +170,7 @@
     </div>
     <div class="card-info">
         <span>{{ Auth::user()->name }}</span>
-        <p>{{ Auth::user()->role }}</p>
+        <p>{{ Auth::user()->getRoleNames()->first() }}</p>
     </div>
     <form id="upload-form" action="{{ route('profile.picture.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
