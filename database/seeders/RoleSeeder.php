@@ -33,7 +33,6 @@ class RoleSeeder extends Seeder
             'update chat',
             'create event',
             'read event',
-            'update event',
             'delete event',
             'create resource',
             'read resource',
@@ -41,8 +40,26 @@ class RoleSeeder extends Seeder
             'read job listing',
             'update job listing',
             'delete job listing',
+            'create post',
+            'read post',
+            'like post',
+            'delete post',
+            'provide feedback',
 
         ]);
-        $Student->givePermissionTo([]);
+        $Student->givePermissionTo([
+            'create message',
+            'read message',
+            'create chat',
+            'read chat',
+            'update chat',
+            'read event',
+            'read resource',
+            'read job listing',
+            'create post',
+            'read post',
+            'like post',
+            'provide feedback',
+        ]);
     }
 }

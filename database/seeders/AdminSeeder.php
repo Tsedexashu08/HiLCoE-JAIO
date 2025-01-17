@@ -16,23 +16,26 @@ class AdminSeeder extends Seeder
                 User::create([
                         'name' => 'Makeda Yonas',
                         'profile_picture' => 'profile_pics/maki.jpg',
-                        'role' => 'Admin',
                         'email' => 'maki@gmail.com',
                         'password' => bcrypt('maki1234'),
-                ]);
+                ])->assignRole('Admin');
                 User::create([
                         'name' => 'Natinayel Zemedkun',
                         'profile_picture' => 'profile_pics/nati.jpg',
-                        'role' => 'Admin',
                         'email' => 'nati@gmail.com',
                         'password' => bcrypt('nati1234'),
-                ]);
+                ])->assignRole('Admin');
                 User::create([
                         'name' => 'Fikir Bisrat',
-                        'profile_picture' => 'profile_pics/fi.jpg',
-                        'role' => 'Admin',
+                        'profile_picture' => 'profile_pics/fi.png',
                         'email' => 'brownie@gmail.com',
-                        'password' => bcrypt('brownierocks123'),
-                ]);
+                        'password' => bcrypt('brownie123'),
+                ])->assignRole('Admin');
+                User::create([
+                        'name' => 'Tsedalu Ashenafi',
+                        'profile_picture' => 'profile_pics/tsed.png',
+                        'email' => 'ashutsedex@gmail.com',
+                        'password' => bcrypt('tsedexashu08'),
+                ])->assignRole('Admin');
         }
 }

@@ -30,7 +30,7 @@
                                 class="profilepic">
                             <div class=" username">
                                 {{ Auth::user()->name }}
-                                <span>{{ Auth::user()->role }}</span>
+                                <span>{{ Auth::user()->type }}</span>
                             </div>
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +121,9 @@
         <x-nav-link href="{{ route('discussion') }}" active="{{ request()->routeIs('discussion') }}">Discussion
             Forums</x-nav-link>
         <x-nav-link href="{{ route('page1') }}" active="{{ request()->routeIs('page1') }}">Resources</x-nav-link>
-        <x-nav-link href="user-management" active="{{ request()->routeIs('users') }}">User Management</x-nav-link>
+        @if (Auth::user()->hasRole('Admin'))
+            <x-nav-link href="user-management" active="{{ request()->routeIs('users') }}">User Management</x-nav-link>
+        @endif
     </nav>
 
     <!-- Mobile Navigation Links -->
