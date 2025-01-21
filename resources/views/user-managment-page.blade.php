@@ -4,16 +4,40 @@
         {{-- option cards with ad role..minamn options(maybe more if i can figure some out) --}}
         <div class="sidebar">
             <section class="option-card"> <a href="register">add user</a> </section>
-            <section class="option-card"> </section>
-            <section class="option-card"> </section>
+            <section class="option-card"> create role</section>
+            <section class="option-card"> user list</section>
+            <section class="option-card">logout</section>
         </div>
         {{-- searching section --}}
         <section class="search-section">
             <div class="user-counts">
-    
+                <div class="icon"><img src="{{ asset('images/user-mngt.png') }}" alt="" srcset=""></div>
+                <h1>User Management Workspace</h1>
+                <h3>manage users along with their roles</h3>
+                {{-- cards for display user type counts(just felt like adding this for cooler look) --}}
+                <div class="counts">
+                    <div class="count-card"> <img src="{{ asset('images/changeprofile.png') }}" alt=""
+                            srcset="">
+                        <section><span>0</span>
+                            <p>Admins</p>
+                        </section>
+                    </div>
+                    <div class="count-card"> <img src="{{ asset('images/changeprofile.png') }}" alt=""
+                            srcset="">
+                        <section><span>0</span>
+                            <p>Faculty</p>
+                        </section>
+                    </div>
+                    <div class="count-card"> <img src="{{ asset('images/changeprofile.png') }}" alt=""
+                            srcset="">
+                        <section><span>0</span>
+                            <p>Students</p>
+                        </section>
+                    </div>
+                </div>
             </div>
             <div class="content">
-    
+                {{-- @include('auth.register') --}}
             </div>
             {{-- <div class="search-bar">
                 <input type="text" placeholder="  search users">
@@ -41,32 +65,96 @@
             #000(205, 205, 214, 0.2) 0 -3px 0 inset;
         text-align: center;
     }
-    .user-counts,.content{
+
+    .user-counts,
+    .content {
         height: 25%;
         width: 95%;
         margin: 0.5%;
-        box-shadow: #000 3px 0px 6px;
-            background-color: white;
+        box-shadow: #ccc 1px 2px 6px;
+        background-color: white;
 
-            margin: auto;
+        margin: auto;
+        border-radius: 5px;
+        overflow: visible;
     }
-    .content{
+
+    .content {
         height: 70%;
-        margin-top: 1%
+        margin-top: 1%;
+    }
+
+    .counts {
+        display: flex;
+        margin: auto;
+        justify-content: center;
+        gap: 4%;
+        height: 60%;
+        width: 60%;
+        align-items: center;
+    }
+
+    .counts section {
+        text-align: center;
+        align-content: center;
+    }
+
+    .counts p {
+        font-weight: bolder;
+    }
+
+    .count-card {
+        height: 70%;
+        width: 420px;
+        display: flex;
+        padding: 0.5%;
+        gap: 8%;
+        border: #ccc 1px solid;
+        padding-left: 1%;
+    }
+
+    .count-card img {
+        object-fit: fill;
+        object-position: center;
+        width: 90px;
+        height: auto;
     }
 
     .user-management-page h1 {
         color: #ccc;
     }
 
+    .user-counts {
+        margin-top: 1%;
+    }
+
+    .icon {
+        width: 160px;
+        height: 140px;
+        background-color: white;
+        position: absolute;
+        margin-left: 4%;
+        margin-top: -1.5%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        object-position: center;
+        object-fit: cover;
+        padding: 0.5%;
+    }
+
+    .icon img {
+        height: auto;
+        width: 80%;
+        margin-left: 1%;
+    }
+
     .search-section {
         width: 100%;
         height: 100%;
-    
+
         justify-content: center;
         align-items: center;
         padding: 1%;
-        /* gap: 1%; */
     }
 
     .search-section .search-bar {

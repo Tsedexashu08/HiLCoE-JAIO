@@ -1,4 +1,5 @@
-<x-guest-layout>
+<x-app-layout>
+    <div>
     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
         <!--Profile picture-->
@@ -65,4 +66,6 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-app-layout>
+</div>
+
