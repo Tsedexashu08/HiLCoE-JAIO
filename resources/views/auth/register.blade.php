@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div>
+    <div class="bg-white p-5 rounded-lg shadow-lg w-full max-w-lg mt-2 mb-2">
     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
         <!--Profile picture-->

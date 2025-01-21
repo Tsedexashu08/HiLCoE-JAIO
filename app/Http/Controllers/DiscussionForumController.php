@@ -61,11 +61,11 @@ class DiscussionForumController extends Controller
         $forums = DiscussionForum::with([
             'postsWithImages.forum_images',
             'postsWithImages.user',
-            'postsWithImages.feedback.user' // Ensure feedback is eager loaded
+            'postsWithImages.feedback.user' // Ensure feedback is eager loaded(just means its loaded together with its relatioships).
         ])
             ->orderBy('created_at', 'desc')
             ->get();
-    
+
         // Map the forums to a structured format
         $posts = $forums->map(function ($forum) {
             return [
@@ -83,23 +83,23 @@ class DiscussionForumController extends Controller
                         'images' => $post->forum_images->map(function ($image) {
                             return $image->image;
                         }),
-                        'created_at' => $post->created_at->format('Y-m-d H:i'), // Post created_at
-                        // 'created_at' => $feedback->created_at->format('Y-m-d H:i'), // Feedback created_at
+                        'created_at' => $post->created_at->format('l,Y-m-d H:i'), // Post created_at
                         'feedback' => $post->feedback->map(function ($feedback) {
                             return [
-                                'comment_id' => $feedback->comment_id, // feedback ID
+                                'comment_id' => $feedback->id, // Use the correct ID property
                                 'content' => $feedback->content,
                                 'user' => [
                                     'name' => $feedback->user->name,
                                     'profile_picture' => $feedback->user->profile_picture,
                                 ],
+                                // 'created_at' => $feedback->created_at->format('Y-m-d H:i'), // Feedback created_at
                             ];
                         }),
                     ];
                 }),
             ];
         });
-    
+
         return view('Discussion-Forum-page', ['posts' => $posts]);
     }
 

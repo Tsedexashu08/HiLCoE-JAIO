@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DiscussionForumController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use App\Http\Middleware\LogUserActivity;
 
 Route::redirect('/', 'login');
 Route::get('p1',[DiscussionForumController::class,'trygetPosts'])->name('page1');
