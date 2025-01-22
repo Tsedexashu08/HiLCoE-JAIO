@@ -1,59 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Management</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 1%;
-        }
-
-        th,
-        td {
-            padding: 8px 12px;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f4f4f4;
-        }
-
-        #image {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        td img {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            border: 2px double rgb(11, 172, 241);
-
-        }
-
-        .options {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 1%;
-        }
-
-        table .actions {
-            display: flex;
-            gap: 10px;
-            height: fit-content;
-            justify-content: center;
-            align-items: center;
-            
-        }
-    </style>
     <div class="search-container">
         <div class="search-bar">
             <input type="text" placeholder="  search users by full name">
@@ -72,14 +16,15 @@
                 <th>Profile picture</th>
                 <th>Full Name</th>
                 <th>Email</th>
-                <th>SOURCE</th>
+                <th>Created at</th>
                 <th>WORKSPACE ROLE</th>
                 <th>ACTIONS</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td id="image"><img src="{{ asset('images/dPpb6vgo9pj77jOL8uneYfbLtIA9cjFrJCAO4iAw.png') }}" alt="Profile Picture" </td>
+                <td id="image"><img src="{{ asset('images/dPpb6vgo9pj77jOL8uneYfbLtIA9cjFrJCAO4iAw.png') }}"
+                        alt="Profile Picture" </td>
                 <td>Admin</td>
                 <td>Admin</td>
                 <td>LOCAL USERS</td>
@@ -102,3 +47,47 @@
         <button disabled>&lt;</button>
         <button disabled>&gt;</button>
     </div>
+    <style>
+        table {
+            table-layout: fixed;
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1%;
+        }
+
+        th,
+        td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        td img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px double rgb(11, 172, 241);
+
+        }
+
+        .options {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 1%;
+        }
+
+        table .actions {
+            display: flex;
+            gap: 10px;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+
+        }
+    </style>

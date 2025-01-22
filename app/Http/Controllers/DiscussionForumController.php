@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\DiscussionForum;
 use App\Models\forum_post_image;
 use App\Models\ForumPost;
+use App\DTOs\UserDTO;
+use App\DTOs\ImageDTO;
+use App\DTOs\ForumDTO;
+use App\DTOs\PostDTO;
+use App\DTOs\FeedbackDTO;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use UserDTO as GlobalUserDTO;
 
-use function Pest\Laravel\json;
 
 class DiscussionForumController extends Controller
 {
@@ -40,7 +45,7 @@ class DiscussionForumController extends Controller
             'user_id' => Auth::user()->id,
             'forum_id' => $forum_id,
         ]);
-        // var_dump($post->id);
+        
         // Process the uploaded images
         if ($request->hasFile('image')) {
             foreach ($request->file('image') as $image) {
@@ -52,62 +57,64 @@ class DiscussionForumController extends Controller
             }
         }
 
-        return redirect()->back()->with('message', 'posted succesfully');
+        return redirect()->back()->with('message', 'Posted successfully!');
     }
-
     public function getPosts()
     {
-        // Eager load discussions, their posts, images, and user relationships
         $forums = DiscussionForum::with([
             'postsWithImages.forum_images',
             'postsWithImages.user',
-            'postsWithImages.feedback.user' // Ensure feedback is eager loaded(just means its loaded together with its relatioships).
+            'postsWithImages.feedback.user',
         ])
             ->orderBy('created_at', 'desc')
             ->get();
 
-        // Map the forums to a structured format
         $posts = $forums->map(function ($forum) {
-            return [
-                'topic' => $forum->topic,
-                'created_at' => $forum->created_at->format('Y-m-d H:i'), // Forum created_at
-                'posts' => $forum->postsWithImages->map(function ($post) {
-                    return [
-                        'post_id' => $post->post_id,
-                        'content' => $post->content,
-                        'user' => [
-                            'name' => $post->user->name,
-                            'role' => $post->user->getRoleNames()->first(),
-                            'profile_picture' => $post->user->profile_picture,
-                        ],
-                        'images' => $post->forum_images->map(function ($image) {
-                            return $image->image;
-                        }),
-                        'created_at' => $post->created_at->format('l,Y-m-d H:i'), // Post created_at
-                        'feedback' => $post->feedback->map(function ($feedback) {
-                            return [
-                                'comment_id' => $feedback->id, // Use the correct ID property
-                                'content' => $feedback->content,
-                                'user' => [
-                                    'name' => $feedback->user->name,
-                                    'profile_picture' => $feedback->user->profile_picture,
-                                ],
-                                // 'created_at' => $feedback->created_at->format('Y-m-d H:i'), // Feedback created_at
-                            ];
-                        }),
-                    ];
-                }),
-            ];
+            $forumPosts = $forum->postsWithImages->map(function ($post) {
+                $userDTO = new UserDTO(
+                    $post->user->name,
+                    $post->user->getRoleNames()->first(),
+                    $post->user->profile_picture
+                );
+
+                $images = $post->forum_images->map(function ($image) {
+                    return new ImageDTO($image->image);
+                })->toArray();
+
+                $feedback = $post->feedback->map(function ($feedback) {
+                    $feedbackUser = new UserDTO(
+                        $feedback->user->name,
+                        '', 
+                        $feedback->user->profile_picture
+                    );
+
+                    return new FeedbackDTO($feedback->comment_id, $feedback->content, $feedbackUser);
+                })->toArray();
+
+                return new PostDTO(
+                    $post->post_id,
+                    $post->content,
+                    $userDTO,
+                    $images,
+                    $post->created_at->format('l,Y-m-d H:i'),
+                    $feedback
+                );
+            })->toArray();
+
+            return new ForumDTO(
+                $forum->topic,
+                $forum->created_at->format('Y-m-d H:i'),
+                $forumPosts
+            );
         });
 
-        return view('Discussion-Forum-page', ['posts' => $posts]);
+        return view('Discussion-Forum-page',['posts' => $posts]);
     }
-
     public function trygetPosts() //this just what i use for testing fetched data(see them page1).
     {
         // $posts = ForumPost::pluck('content');
         $posts = DiscussionForum::with(['postsWithImages.forum_images', 'postsWithImages.user', 'postsWithfeedback.feedback.user'])->get();
-        return (compact('posts'));
+        return (['posts' => $posts]);
     }
 
     public function index()

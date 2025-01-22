@@ -28,7 +28,7 @@ Route::post('/send-message', [ChatController::class,'sendMessage'])->name('chat.
 Route::post('/load-messages', [ChatController::class,'LoadMessages'])->name('chat.loadMessages');
 
 //routes for discussion forum page
-Route::post('add-post', [DiscussionForumController::class, 'addPost'])->name('discussion.addPost');
+Route::post('add-post', [DiscussionForumController::class, 'addPost'])->name('discussion.addPost')->middleware('LogUserAction:made a forum post');
 
 //joblistingpage routes
 Route::get('joblisting', function () {

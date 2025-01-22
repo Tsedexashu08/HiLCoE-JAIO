@@ -4,54 +4,75 @@
         {{-- option cards with ad role..minamn options(maybe more if i can figure some out) --}}
         <div class="sidebar">
             <section class="option-card"> <a href="register">add user</a> </section>
-            <section class="option-card"> create role</section>
-            <section class="option-card"> user list</section>
+            <section class="option-card" id="manage-roles"> create role</section>
+            <section class="option-card" id="user-list"> user list</section>
             <section class="option-card">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-
                     <button type="submit"> {{ __('Log Out') }}</button>
-
                 </form>
             </section>
         </div>
+        <div id="roles-mngt" style="display: none">
+            @include('components.role-creation-page')
+        </div>
         {{-- searching section --}}
-        <section class="search-section">
+        <section class="user-mngt-section" id="users-section">
             <div class="user-counts">
-                <div class="icon"><img src="{{ asset('images/user(1).png') }}" alt="" srcset=""></div>
+                <div class="icon"><img src="{{ asset('images/user(1).png') }}" alt=""></div>
                 <h1>User Management Workspace</h1>
-                <h3>manage users along with their roles</h3>
                 {{-- cards for display user type counts(just felt like adding this for cooler look) --}}
                 <div class="counts">
                     <div class="count-card" id="admin-card"> <img src="{{ asset('images/admin.png') }}" alt=""
-                            srcset="">
+                        srcset="">
                         <section><span>0</span>
                             <p>Admins</p>
                         </section>
                     </div>
                     <div class="count-card" id="faculty-card"> <img src="{{ asset('images/faculty.png') }}"
-                            alt="" srcset="">
+                        alt="" srcset="">
                         <section><span>0</span>
                             <p>Faculty</p>
                         </section>
                     </div>
                     <div class="count-card" id="student-card"> <img src="{{ asset('images/student.png') }}"
-                            alt="" srcset="">
+                        alt="" srcset="">
                         <section><span>0</span>
                             <p>Students</p>
                         </section>
                     </div>
                 </div>
+                {{-- <h3>manage users along with their roles</h3> --}}
             </div>
             <div class="content">
                 {{-- @include('auth.register') --}}
-                @include('components.user-list')
-             </div>
+                <div id="user-lists">
+                    @include('components.user-list')
+                </div>
+
+            </div>
         </section>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.waves.min.js"></script>
     <script src="{{ asset('js/forumpage.js') }}"></script>
+    <script>
+        var userssection = document.getElementById('users-section');
+        var rolessection = document.getElementById('roles-mngt');
+        var userlist = document.getElementById('user-list');
+        document.getElementById('manage-roles').addEventListener('click', function(event) {
+            if (userssection.style.display != 'none') {
+                userssection.style.display = 'none';
+            }
+            rolessection.style.display = 'block';
+        });
+        document.getElementById('user-list').addEventListener('click', function(event) {
+            if (rolessection.style.display != 'none') {
+                rolessection.style.display = 'none';
+            }
+            userssection.style.display = 'block';
+        });
+    </script>
 </x-app-layout>
 <style>
     .count-card,
@@ -61,7 +82,7 @@
 
     .user-management-page {
         display: flex;
-        height: 90vh;
+        height: max-content;
         width: 100%;
         box-shadow: rgba(0, 0, .6, .4) 3px 2px 6px, rgba(.5, 0, .3, .3) 2px 7px 15px -2px, #000(205, 205, 214, .2) 0 -3px 0 inset;
         text-align: center
@@ -77,6 +98,7 @@
         border-radius: 5px;
         overflow: visible;
         border: 1px solid #ccc;
+        padding: 1%;
     }
 
     .count-card,
@@ -86,7 +108,7 @@
     }
 
     .content {
-        height: 70%;
+        height: fit-content;
         margin-top: 1%;
 
         padding: 2%;
@@ -99,16 +121,18 @@
         gap: 4%;
         height: 60%;
         width: 60%;
-        align-items: center
+        align-items: center;
+     
     }
 
     .counts section {
         text-align: center;
-        align-content: center
+        align-content: center;
+        text-shadow: #000 1px 0 2px;
     }
 
     .count-card {
-        height: 70%;
+        height: 100px;
         width: 420px;
         display: flex;
         padding: .5% .5% .5% 1%;
@@ -129,16 +153,19 @@
         object-position: center;
     }
 
-    #student-card {
-        background: linear-gradient(to right, #4bc3fb, #44e9db)
-    }
+
 
     #admin-card {
-        background: linear-gradient(to right, #4a90e2, #1c4e80)
+        background: linear-gradient(to right, #0076a8, #003d5b);
+    }
+
+    #student-card {
+        background: linear-gradient(to right, #5bc0ef, #3ae0d1);
     }
 
     #faculty-card {
-        background: linear-gradient(to right, #67b26f, #50e269)
+        background: linear-gradient(135deg, #fff, #fff, silver);
+        background: linear-gradient(120deg, #76c93a, #6ef12b);
     }
 
     .user-management-page h1 {
@@ -166,7 +193,7 @@
 
     }
 
-    .search-section {
+    .user-mngt-section {
         width: 100%;
         height: 100%;
         justify-content: center;
@@ -174,7 +201,7 @@
         padding: 1%
     }
 
-    .search-section .search-bar {
+    .user-mngt-section .search-bar {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -185,12 +212,12 @@
         height: fit-content;
         background-color: rgba(255, 255, 255, .8);
         margin: 0 auto;
-        margin-bottom:1%; 
-        border-radius:25px;
-        overflow: hidden; 
+        margin-bottom: 1%;
+        border-radius: 25px;
+        overflow: hidden;
     }
 
-    .search-section .search-bar input {
+    .user-mngt-section .search-bar input {
         border: .5px solid #ccc;
         outline: none;
         flex: 1;
@@ -202,20 +229,20 @@
         margin-left: 2px
     }
 
-    .search-section .search-bar button {
-        background: #0e47f3;
+    .user-mngt-section .search-bar button {
+        background: #ccc;
         border: 1px solid #fff;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 10px;
-        border-top-right-radius:25px; 
-        border-bottom-right-radius:25px; 
+        border-top-right-radius: 25px;
+        border-bottom-right-radius: 25px;
         height: 100%;
     }
 
-    .search-section .search-bar svg {
+    .user-mngt-section .search-bar svg {
         width: 30px;
         height: 32px;
         color: #fff

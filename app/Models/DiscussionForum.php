@@ -19,12 +19,11 @@ class DiscussionForum extends Model
 
     public function postsWithImages()
     {
-        return $this->posts()->with('forum_images','user');
+        return $this->posts()->with('forum_images', 'user');
     }
 
     public function postsWithfeedback()
-{
-    return $this->posts()->with('feedback.user'); // Load feedback along with the user for each feedback
-}
-    
+    {
+        return $this->posts()->with('feedback.user'); // Load feedback along with the user for each feedback
+    }
 }

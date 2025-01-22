@@ -21,7 +21,6 @@
                 </button>
             </div>
             <label>#searches found</label>
-            @include('components.job-search-filter')
             </div>
         </div>
         <div class="search-list">
