@@ -1,6 +1,4 @@
-@extends('dashboard')
-
-@section('content')
+<x-app-layout>
     <link rel="stylesheet" href="{{ asset('css/discussion-forum-page.css') }}">
     <div class="forum-page">
         <div class="forum-header">
@@ -75,22 +73,18 @@
                                         class="img-fluid" loading="lazy">
                                 @endforeach
                             </div>
+
+                            {{-- Comments and like section --}}
+                            @foreach ($forum->posts as $forumPost)
+                                @include('components.likes-and-comments', [
+                                    'feedback' => $forumPost->feedback,
+                                    'postId' => $forumPost->post_id ,
+                                    'likes'=>$forumPost->likes,
+                                    'comments'=>count($forumPost->feedback)
+                                ])
+                            @endforeach
                         @endforeach
                     </section>
-
-                    {{-- Comments and like section --}}
-                    @foreach ($forum->posts as $forumPost)
-                        @if (count($forumPost->feedback) > 0)
-                            @include('components.likes-and-comments', [
-                                'feedback' => $forumPost->feedback,
-                                'postId' => $forumPost->post_id,
-                            ])
-                        @include('components.add-comment', [
-                            'postId' => $forumPost->post_id,
-                            'comments' => $forumPost->feedback, // Ensure comments are passed
-                        ])
-                        @endif
-                    @endforeach
                 </div>
             @endforeach
         </div>
@@ -108,17 +102,5 @@
             const addpost = document.getElementById('popup-form');
             addpost.style.display = 'none';
         });
-
-        // Update the comment button functionality to open the correct comment section
-        document.querySelectorAll('.cmnt-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const postId = this.getAttribute('data-post-id');
-                const addComment = document.getElementById(
-                `add-comment-${postId}`); // Ensure this ID is unique
-                if (addComment) {
-                    addComment.style.display = addComment.style.display === 'none' ? 'block' : 'none';
-                }
-            });
-        });
     </script>
-@endsection
+</x-app-layout>

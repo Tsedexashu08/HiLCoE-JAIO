@@ -1,13 +1,10 @@
-<div class="comment-header text-center py-2 border-b border-gray-900 mb-4">
-    <span class="text-lg font-semibold text-gray-800">Comments</span>
-</div><div class="flex justify-center items-center  bg-gray-200 h-fit p-6 m-2">
-    <div id="toast-notification" class="w-full max-w-2xl p-10 text-gray-900 bg-white rounded-lg shadow  dark:text-gray-900"
+    <div id="toast-notification" class="  p-5 text-gray-900 bg-white rounded-lg shadow w- dark:text-gray-900 mb-2"
         role="alert">
         <div class="flex items-center mb-4">
             <div class="relative inline-block shrink-0">
                 <div
                     class="w-16 h-16 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-2xl overflow-hidden">
-                    <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="">
+                    <img src={{$profilepicture}}  alt="">
                 </div>
                 <span
                     class="absolute bottom-0 right-0 inline-flex items-center justify-center w-8 h-8 bg-blue-600 rounded-full">
@@ -24,14 +21,13 @@
                 </span>
             </div>
             <div class="ml-4 text-sm font-normal">
-                <div class="text-sm font-semibold text-gray-900 dark:text-black">
-                    Manish Tamang
+            <div class="text-sm font-semibold text-gray-900 dark:text-black">
+                    {{$username}}
                 </div>
-                <div class="text-sm font-normal">commented on your photo</div>
+                <div class="text-sm font-normal">{{$comment}}</div>
                 <span class="text-xs font-medium text-blue-600 dark:text-blue-500">
                     a few seconds ago
                 </span>
             </div>
         </div>
     </div>
-</div>

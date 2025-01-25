@@ -3,8 +3,8 @@
     <div class="user-management-page">
         {{-- option cards with ad role..minamn options(maybe more if i can figure some out) --}}
         <div class="sidebar">
-            <section class="option-card"> <a href="register">add user</a> </section>
-            <section class="option-card" id="manage-roles"> create role</section>
+            <section class="option-card" id="adduser">add user</section>
+            <section class="option-card" id="manage-roles"> manage roles</section>
             <section class="option-card" id="user-list"> user list</section>
             <section class="option-card">
                 <form method="POST" action="{{ route('logout') }}">
@@ -14,42 +14,43 @@
             </section>
         </div>
         <div id="roles-mngt" style="display: none">
-            @include('components.role-creation-page')
+            @include('components.role-creation-page', [$roles, $permissions])
+        </div>
+        <div id="add-user">
+            @include('auth.register')
         </div>
         {{-- searching section --}}
         <section class="user-mngt-section" id="users-section">
             <div class="user-counts">
                 <div class="icon"><img src="{{ asset('images/user(1).png') }}" alt=""></div>
                 <h1>User Management Workspace</h1>
+                <h3>manage users along with their roles</h3>
                 {{-- cards for display user type counts(just felt like adding this for cooler look) --}}
                 <div class="counts">
                     <div class="count-card" id="admin-card"> <img src="{{ asset('images/admin.png') }}" alt=""
-                        srcset="">
-                        <section><span>0</span>
+                            srcset="">
+                        <section><span>{{ $adminCount }}</span>
                             <p>Admins</p>
                         </section>
                     </div>
                     <div class="count-card" id="faculty-card"> <img src="{{ asset('images/faculty.png') }}"
-                        alt="" srcset="">
-                        <section><span>0</span>
+                            alt="" srcset="">
+                        <section><span>{{ $facultyCount }}</span>
                             <p>Faculty</p>
                         </section>
                     </div>
                     <div class="count-card" id="student-card"> <img src="{{ asset('images/student.png') }}"
-                        alt="" srcset="">
-                        <section><span>0</span>
+                            alt="" srcset="">
+                        <section><span>{{ $studentCount }}</span>
                             <p>Students</p>
                         </section>
                     </div>
                 </div>
-                {{-- <h3>manage users along with their roles</h3> --}}
             </div>
             <div class="content">
-                {{-- @include('auth.register') --}}
                 <div id="user-lists">
-                    @include('components.user-list')
+                    @include('components.user-list', [$users])
                 </div>
-
             </div>
         </section>
     </div>
@@ -59,18 +60,31 @@
     <script>
         var userssection = document.getElementById('users-section');
         var rolessection = document.getElementById('roles-mngt');
-        var userlist = document.getElementById('user-list');
+        var userlist = document.getElementById('user-lists');
+        var register = document.getElementById('add-user')
         document.getElementById('manage-roles').addEventListener('click', function(event) {
             if (userssection.style.display != 'none') {
                 userssection.style.display = 'none';
+            } else if (register.style.display != 'none') {
+                register.style.display = 'none';
             }
             rolessection.style.display = 'block';
         });
         document.getElementById('user-list').addEventListener('click', function(event) {
             if (rolessection.style.display != 'none') {
                 rolessection.style.display = 'none';
+            }else if (register.style.display != 'none') {
+                register.style.display = 'none';
             }
             userssection.style.display = 'block';
+        });
+        document.getElementById('adduser').addEventListener('click', function(event) {
+            if (userssection.style.display != 'none') {
+                userssection.style.display = 'none';
+            } else if (rolessection.style.display != 'none') {
+                rolessection.style.display = 'none';
+            }
+            register.style.display = 'block';
         });
     </script>
 </x-app-layout>
@@ -82,12 +96,17 @@
 
     .user-management-page {
         display: flex;
-        height: max-content;
+        height: 100%;
         width: 100%;
         box-shadow: rgba(0, 0, .6, .4) 3px 2px 6px, rgba(.5, 0, .3, .3) 2px 7px 15px -2px, #000(205, 205, 214, .2) 0 -3px 0 inset;
         text-align: center
     }
 
+    #add-user {
+        display: none;
+        margin: auto;
+        width: 60%;
+    }
     .content,
     .user-counts {
         height: 25%;
@@ -106,14 +125,14 @@
     .user-counts {
         border: 1px solid #ccc
     }
-
+    
     .content {
         height: fit-content;
         margin-top: 1%;
-
+        
         padding: 2%;
     }
-
+    
     .counts {
         display: flex;
         margin: auto;
@@ -122,9 +141,9 @@
         height: 60%;
         width: 60%;
         align-items: center;
-     
+        
     }
-
+    
     .counts section {
         text-align: center;
         align-content: center;
@@ -139,7 +158,7 @@
         gap: 8%;
         color: #fff
     }
-
+    
     .count-card img {
         object-fit: inherit;
         object-position: center;
@@ -158,7 +177,7 @@
     #admin-card {
         background: linear-gradient(to right, #0076a8, #003d5b);
     }
-
+    
     #student-card {
         background: linear-gradient(to right, #5bc0ef, #3ae0d1);
     }
@@ -168,14 +187,19 @@
         background: linear-gradient(120deg, #76c93a, #6ef12b);
     }
 
-    .user-management-page h1 {
-        color: #ccc
+  
+    .user-counts h1,h3{
+        color: #000;
+        text-shadow: #ccc 2px 1px 2px;
+        margin-bottom: 3px;
     }
-
+    .user-counts h3{
+        color: #ffff;
+    }
     .user-counts {
         margin-top: 1%
     }
-
+    
     .icon {
         width: 160px;
         height: fit-content;

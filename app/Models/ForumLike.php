@@ -15,7 +15,7 @@ class ForumLike extends Model
     
     public function post()
     {
-        return $this->belongsTo(ForumPost::class);
+        return $this->belongsTo(ForumPost::class,);
     }
 
     public function user()

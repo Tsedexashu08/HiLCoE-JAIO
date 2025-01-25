@@ -8,8 +8,9 @@ class PostDTO
     public array $images;
     public string $created_at;
     public array $feedback;
+    public int $likes;
 
-    public function __construct(int $postId, string $content, UserDTO $user, array $images, string $createdAt, array $feedback)
+    public function __construct(int $postId, string $content, UserDTO $user, array $images, string $createdAt, array $feedback, int $likes)
     {
         $this->post_id = $postId;
         $this->content = $content;
@@ -17,5 +18,6 @@ class PostDTO
         $this->images = $images;
         $this->created_at = $createdAt;
         $this->feedback = $feedback;
+        $this->likes = $likes;
     }
 }

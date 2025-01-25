@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ForumFeedback extends Model
 {
     protected $table = 'forum_feedback';
+    protected $primaryKey = 'comment_id';
     protected $fillable = [
         'post_id',
         'user_id',

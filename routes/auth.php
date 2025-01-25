@@ -12,12 +12,12 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 //these routes are on their own cause only admins can add users.
-Route::middleware(['role:Admin'])->group(function () {
+// Route::middleware(['role:Admin'])->group(function () {
 
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
     Route::post('register', [RegisteredUserController::class, 'store']);
-});
+// });
 
 
 Route::middleware('guest')->group(function () {

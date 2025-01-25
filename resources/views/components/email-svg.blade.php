@@ -1,4 +1,3 @@
-<?xml version="1.0" ?>
 
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
 <svg width="300px" height="300px" viewBox="0 0 120 120" id="Layer_1" version="1.1" xml:space="preserve"

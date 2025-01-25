@@ -13,29 +13,52 @@
     <table>
         <thead>
             <tr>
-                <th>Profile picture</th>
+                <th>Profile Picture</th>
                 <th>Full Name</th>
                 <th>Email</th>
-                <th>Created at</th>
-                <th>WORKSPACE ROLE</th>
-                <th>ACTIONS</th>
+                <th>Created At</th>
+                <th>Workspace Role</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td id="image"><img src="{{ asset('images/dPpb6vgo9pj77jOL8uneYfbLtIA9cjFrJCAO4iAw.png') }}"
-                        alt="Profile Picture" </td>
-                <td>Admin</td>
-                <td>Admin</td>
-                <td>LOCAL USERS</td>
-                <td>Admin</td>
-                <td class="actions">
-                    <span><x-delete-button /></span>
-                    <span><x-view-button /></span>
-                </td>
-            </tr>
+            @foreach ($users as $user)
+                <tr>
+                    <td id="image"><img src="{{ asset('storage/' . $user->profile_picture) }}"
+                            alt="Profile Picture" /></td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->created_at }}</td>
+                    <td>{{ $user->getRoleNames()->first() }}</td>
+                    <td class="actions">
+                        <span id="deleteButton" onclick="showDeleteConfirmation(event, '{{ $user->id }}')">
+                            <x-delete-button />
+                        </span>
+                        <span><x-show-button /></span>
+                        <span><x-view-button /></span>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
+  <!-- Confirmation Popup -->
+<div id="deleteConfirmation" class="absolute left-5 hidden bg-white rounded-lg shadow-lg p-4 w-64 z-10">
+    <div class="relative">
+        <h2 class="text-sm font-semibold mb-2">Confirm Deletion</h2>
+        <p class="text-gray-600 text-xs mb-4">Are you sure you want to delete this item?</p>
+        <div class="flex justify-end">
+            <button id="cancelButton"
+                class="mr-2 px-2 py-1 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Cancel</button>
+
+            <!-- Form for Deletion -->
+            <form method="POST" action="{{ route('user.destroy', $user->id) }}">
+                @csrf
+                @method('DELETE') <!-- Specify the DELETE method -->
+                <button type="submit" class="px-2 py-1 bg-red-600 text-white rounded-md hover:bg-red-700">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
     <div class="options">
         <span>Rows per page:</span>
         <select>
@@ -53,6 +76,10 @@
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 1%;
+        }
+
+        tr:nth-child(odd) {
+            background-color: lightcyan;
         }
 
         th,
@@ -90,4 +117,38 @@
             padding: 20px;
 
         }
+
+        #deleteConfirmation {
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        #deleteConfirmation:not(.hidden) {
+            opacity: 1;
+        }
     </style>
+    <script>
+        function showDeleteConfirmation(event, userId) {
+            const popup = document.getElementById('deleteConfirmation');
+            const button = event.target.closest('#deleteButton'); // Get the closest delete button
+
+            // Calculate the position of the button
+            const rect = button.getBoundingClientRect();
+            popup.style.top = `${rect.top - popup.offsetHeight - 5}px`; // Position directly above the button
+            popup.style.left = `${rect.left + rect.width / 2 - popup.offsetWidth / 2}px`; // Center above the button
+
+            // Show the popup
+            popup.classList.remove('hidden');
+
+            // Hide the popup when cancel is clicked
+            document.getElementById('cancelButton').onclick = function() {
+                popup.classList.add('hidden');
+            };
+
+            // Confirm deletion action
+            document.getElementById('confirmButton').onclick = function() {
+                // Perform deletion logic here
+                popup.classList.add('hidden');
+            };
+        }
+    </script>

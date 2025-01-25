@@ -88,7 +88,7 @@ class DiscussionForumController extends Controller
                         $feedback->user->profile_picture
                     );
 
-                    return new FeedbackDTO($feedback->comment_id, $feedback->content, $feedbackUser);
+                    return new FeedbackDTO($feedback->post_id, $feedback->content, $feedbackUser);
                 })->toArray();
 
                 return new PostDTO(
@@ -97,7 +97,8 @@ class DiscussionForumController extends Controller
                     $userDTO,
                     $images,
                     $post->created_at->format('l,Y-m-d H:i'),
-                    $feedback
+                    $feedback,
+                    $post->likes()->count(),//since we only need like count(i aint adding who liked minamn aint got the time nerds).
                 );
             })->toArray();
 
@@ -109,20 +110,14 @@ class DiscussionForumController extends Controller
         });
 
         return view('Discussion-Forum-page',['posts' => $posts]);
+        // return (['posts' => $posts]);
     }
     public function trygetPosts() //this just what i use for testing fetched data(see them page1).
     {
         // $posts = ForumPost::pluck('content');
         $posts = DiscussionForum::with(['postsWithImages.forum_images', 'postsWithImages.user', 'postsWithfeedback.feedback.user'])->get();
+
         return (['posts' => $posts]);
     }
 
-    public function index()
-    {
-        // Retrieve all forums with their posts, images, and user data
-        $forums = DiscussionForum::with(['postsWithImages.user', 'postsWithImages.forum_images', 'postsWithfeedback.feedback.user'])
-            ->orderBy('created_at', 'desc')->get();
-
-        return view('Discussion-Forum-page', compact('forums'));
-    }
 }

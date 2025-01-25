@@ -8,12 +8,17 @@ use Illuminate\View\Component;
 
 class comment extends Component
 {
+    public $comment;
+    public $username;
+    public $profilepicture;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($comment, $username, $profilepicture)
     {
-        //
+        $this->comment = $comment;
+        $this->username = $username;
+        $this->profilepicture = $profilepicture;
     }
 
     /**

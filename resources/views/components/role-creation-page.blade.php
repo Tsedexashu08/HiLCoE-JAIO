@@ -12,30 +12,17 @@
                 <hr/>
             </span>
             <table>
+                @foreach ($roles as $role )   
                 <tr>
                     <td><img src="{{asset('images/usr.png')}}" alt=""></td>
-                    <td>Administrator</td>
+                    <td>{{$role->name}}</td>
                     <td class="actions">
                         <x-delete-button/>
                         <x-view-button/>
+                        <x-show-button/>
                     </td>
                 </tr>
-                <tr>
-                    <td><img src="{{asset('images/usr.png')}}" alt=""></td>
-                    <td>Administrator</td>
-                    <td class="actions">
-                        <x-delete-button/>
-                        <x-view-button/>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="{{asset('images/usr.png')}}" alt=""></td>
-                    <td>Administrator</td>
-                    <td class="actions">
-                        <x-delete-button/>
-                        <x-view-button/>
-                    </td>
-                </tr>
+                @endforeach
             </table>
         </div>
         <div class="create-role">
