@@ -105,7 +105,7 @@
     #add-user {
         display: none;
         margin: auto;
-        width: 60%;
+        width: fit-content;
     }
     .content,
     .user-counts {
@@ -194,7 +194,8 @@
         margin-bottom: 3px;
     }
     .user-counts h3{
-        color: #ffff;
+        text-shadow: #000 1px 1px 1px;
+        color: #fff;
     }
     .user-counts {
         margin-top: 1%

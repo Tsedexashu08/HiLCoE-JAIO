@@ -15,51 +15,65 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        //creating roles to assign to our users.
+        // Creating roles to assign to our users.
         $Admin = Role::create(['name' => 'Admin']);
         $Faculty = Role::create(['name' => 'Faculty']);
         $Student = Role::create(['name' => 'Student']);
-
-        //assigning the roles specific permissions(stuff they'll be able to do).
+    
+        // Assigning the roles specific permissions (stuff they'll be able to do).
+        
+        // Admin permissions
         $Admin->givePermissionTo(ModelsPermission::all());
+    
+        // Faculty permissions
         $Faculty->givePermissionTo([
             'create message',
             'read message',
-            'update message',
-            'delete message',
+            'update message', // For own messages
+            'delete message', // For own messages
             'create chat',
-            'update chat',
             'read chat',
-            'update chat',
+            'update chat', // For own chats
+            'delete chat', // For own chats
             'create event',
             'read event',
+            'update event',
             'delete event',
             'create resource',
             'read resource',
+            'update resource', // For own resources
+            'delete resource', // For own resources
             'create job listing',
             'read job listing',
-            'update job listing',
-            'delete job listing',
             'create post',
             'read post',
+            'delete post', // For own posts
             'like post',
-            'delete post',
             'provide feedback',
-
+            'edit feedback', // For own feedback
+            'delete feedback', // For own feedback
         ]);
+    
+        // Student permissions
         $Student->givePermissionTo([
             'create message',
             'read message',
             'create chat',
             'read chat',
-            'update chat',
+            'update chat', 
+            'delete chat',
+            'register for event',
             'read event',
             'read resource',
             'read job listing',
             'create post',
             'read post',
+            'update post',
+            'delete post', 
             'like post',
             'provide feedback',
+            'edit feedback', 
+            'delete feedback', 
         ]);
     }
 }

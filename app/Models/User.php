@@ -50,7 +50,7 @@ class User extends Authenticatable
         ];
     }
 
-  
+
     public function messagesSent()
     {
         return $this->hasMany(Message::class, 'sender_id');
@@ -86,15 +86,6 @@ class User extends Authenticatable
         return $this->hasMany(ForumPost::class);
     }
 
-    public function postLikes()
-    {
-        return $this->hasMany(PostLike::class);
-    }
-
-    public function postComments()
-    {
-        return $this->hasMany(PostComment::class);
-    }
 
     public function forumLikes()
     {
@@ -104,5 +95,10 @@ class User extends Authenticatable
     public function forumFeedback()
     {
         return $this->hasMany(ForumFeedback::class);
+    }
+
+    public function appliedCareers()
+    {
+        return $this->hasMany(appliedcareers::class);
     }
 }

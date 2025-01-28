@@ -18,7 +18,7 @@ class UserManagementController extends Controller
         $facultyCount = User::role('Faculty')->count();
         $studentCount = User::role('Student')->count();
 
-        $users = User::where('id', '!=', Auth::id()) // Exclude the current user
+        $users = User::where('id', '!=', Auth::id())->orderBy('created_at','desc') // Exclude the current user
         ->get(); // retrievieng all our users except the current one(since logged in user can already view there profile from accountpage...duh)
         $roles = Role::all();
         $permissions = Permission::all();
@@ -35,7 +35,10 @@ class UserManagementController extends Controller
 
         return view('user-managment-page', $data);
     }
-    public function EditUser(Request $request) {}
+    public function EditUser($id) {
+        $user = User::find($id);
+        return view('edit-user', ['user'=>$user]);
+    }
     public function DeleteUser($id) {
         $user = User::find($id);
 
@@ -46,5 +49,8 @@ class UserManagementController extends Controller
             return redirect()->back()->with('error', 'User not found.');
         }
     }
-    public function ViewUser(Request $request) {}
+    public function ViewUser($id) {
+        $user = User::find($id);
+        return view('user-view-page', ['user' => $user]);
+    }
 }

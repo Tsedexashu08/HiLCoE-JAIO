@@ -9,6 +9,7 @@
                 <x-waving-hand/>
             </section>
             <h1>search for opportunities</h1>
+            <a href="{{route('admin.addjob')}}">add job</a>
             <div class="job-search">
             <div class="search-bar">
                 <input type="text" placeholder="  Write job title here">

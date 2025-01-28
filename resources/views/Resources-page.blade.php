@@ -4,8 +4,10 @@
 
     <div class="resource-list">
         <h1>All your curiosity and information in one place</h1>
+        <a href="{{route('admin.addresource')}}">Add-Resource</a>
         <section class="courses">
             <h2>Free Courses found online</h2>
+
             <button class="scroll-button left" onclick="scrollCourses(-1)">&#10094;</button>
             <div class="course-list-container">
                 <div class="course-list">

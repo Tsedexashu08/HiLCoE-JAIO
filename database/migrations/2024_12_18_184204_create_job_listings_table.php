@@ -11,7 +11,9 @@ class CreateJobListingsTable extends Migration
         Schema::create('job_listings', function (Blueprint $table) {
             $table->id('job_id');
             $table->string('title');
+            $table->string('type');//job or internship
             $table->string('company_name');
+            $table->string('logo');
             $table->string('location')->nullable();
             $table->text('description')->nullable();
             $table->string('category')->nullable();

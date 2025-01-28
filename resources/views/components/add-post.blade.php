@@ -23,15 +23,15 @@
             </section>
         </section>
           <!-- Error Display Area -->
-          @if ($errors->any())
-          <div class="alert alert-danger">
+       
+          <div class="alert alert-danger" >
               <ul>
                   @foreach ($errors->all() as $error)
                       <li>@include('components.error-popup',['message'=> $error ])</li>
                   @endforeach
               </ul>
           </div>
-      @endif
+      
        <!-- Success Message -->
        @if (session('message'))
        <div class="alert alert-success">

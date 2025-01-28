@@ -36,7 +36,7 @@
     </div>
 </div>
 
-<div id="add-comment-{{ $postId }}" class="add-comment" style="display: none;">
+<div id="add-cmnt-{{ $postId }}" class="add-cmnt">
     <div class="flex justify-center items-center bg-gray-200 h-fit p-2 m-2 w-full">
         <div class="comment-section w-full">
             <div class="comment">
@@ -62,13 +62,13 @@
 
 
 <style>
-    #add-comment-{{ $postId }} {
+    #add-cmnt-{{ $postId }} {
         display: none;
     }
 
-    .cmts {
+    /* .cmts {
         display: flex;
-    }
+    } */
 
     .likes-and-comments {
         display: flex;
@@ -141,13 +141,18 @@
     .comment-container svg:hover {
         fill: #2196F3;
     }
+
+    .add-cmnt{
+        display: none;
+    }
+
 </style>
 
 <script>
     document.querySelectorAll('.cmnt-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const postId = this.getAttribute('data-post-id');
-            const addCommentSection = document.querySelector(`#add-comment-${postId}`);
+            const addCommentSection = document.querySelector(`#add-cmnt-${postId}`);
 
             if (addCommentSection) {
                 // Toggle display property
@@ -158,7 +163,7 @@
                 }
             }
 
-            console.log('Post ID:', postId);
+            console.log('Post ID:', postId);//just checking to see if postid is passed properly(will remove later).
         });
     });
 </script>

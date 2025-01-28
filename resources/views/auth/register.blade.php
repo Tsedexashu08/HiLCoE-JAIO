@@ -1,4 +1,4 @@
-<div class="bg-white p-5  rounded-lg shadow-lg w-full flex m-auto justify-center mt-2 mb-2">
+<div class="bg-white p-5  rounded-lg shadow-lg w-full  flex m-auto justify-center mt-2 mb-2">
     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
         

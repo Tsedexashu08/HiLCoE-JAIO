@@ -1,8 +1,7 @@
-@extends('dashboard')
-@section('content')
+<x-app-layout>
     <div class="events-page">
         <h1 class="heading">Checkout some events coming up soon</h1>
-
+          <a href="{{route('admin.addevent')}}">add event</a>
         <div class="event">
             <div class="event-date">
                 26 <br> <span>Dec</span>
@@ -298,4 +297,5 @@
             color: gray;
         }
     </style>
-@endsection
+</x-app-layout>
+
